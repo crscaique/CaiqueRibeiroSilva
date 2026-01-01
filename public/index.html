@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale-1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./figmaStyle.css" />
+    <title>Cai Portfolio</title>
+  </head>
+  <body class="overflow-x-hidden">
+    <header>
+      <menu
+        class="fixed left-1/2 flex w-1/2 -translate-x-1/2 justify-center space-x-12 p-2 shadow-inner shadow-lg"
+      >
+        <li>
+          <a href="#" class="font-bold text-black hover:text-blue-400">About</a>
+        </li>
+        <li>
+          <a href="#" class="font-bold text-black hover:text-blue-400"
+            >Portfolio & Projects</a
+          >
+        </li>
+        <li>
+          <a href="#" class="font-bold text-black hover:text-blue-400"
+            >Contact</a
+          >
+        </li>
+      </menu>
+    </header>
+    <section id="homepage">
+      <div
+        id="container"
+        class="background-1 relative grid h-screen w-full place-items-center overflow-hidden"
+      >
+        <div class="absolute inset-0">
+          <div
+            class="absolute left-20 top-10 h-40 w-40 rounded-full border-4 border-[#eb7779] bg-[url(img/background.webp)] bg-contain shadow-xl blur-sm"
+          ></div>
+          <div
+            class="absolute -bottom-10 right-12 h-52 w-52 rounded-full border-4 border-[#eb7779] bg-[url(img/background.webp)] bg-contain shadow-xl blur-sm"
+          ></div>
+          <div
+            class="absolute -right-10 -top-10 h-52 w-52 rounded-full border-4 border-[#eb7779] bg-[url(img/background.webp)] bg-contain shadow-xl blur-sm"
+          ></div>
+        </div>
+        <div
+          class="z-10 flex h-3/4 w-3/4 flex-col items-center justify-center rounded-md border-2 border-black bg-[url(img/cleanvisualstudiobackground.webp)] bg-cover bg-center bg-no-repeat shadow-xl"
+        >
+          <div
+            class="grayscale-50 mb-5 h-56 w-56 rounded-full bg-[url(img/linkedid.webp)] bg-contain bg-no-repeat"
+          ></div>
+          <h1 class="text-2xl font-bold text-neutral-50">Caique R. Silva</h1>
+
+          <h2 class="text-xl text-neutral-50">
+            I.T. Professional | Software Engineer | Go-Getter
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <div
+      class="red-bar absolute bottom-0 flex h-14 w-full justify-center border-b-4 border-t-4 border-white"
+    >
+      <button
+        class="top-10 h-auto w-auto rounded-full border-2 border-black bg-white px-2"
+      >
+        &#8595;
+      </button>
+    </div>
+
+    <section id="Education">
+      <div
+        id="container"
+        class="background-2 relative flex h-screen w-full flex-row place-items-center bg-[url(img/background.webp)] bg-repeat [background-size:300px]"
+      >
+        <div
+          id="left-panel"
+          class="flex h-3/4 w-40 items-center justify-center rounded-r-lg border-b-4 border-r-4 border-t-4 border-white p-10 text-center text-lg tracking-wide"
+        >
+          <ul class="flex flex-col gap-y-20">
+            <li>Who I Am</li>
+            <li>Education</li>
+            <li>Technologies & Tools</li>
+          </ul>
+        </div>
+        <div
+          id="content"
+          class="m-20 h-3/4 w-3/4 flex-1 rounded-md border border-4 border-solid border-[#eb7779] bg-white"
+        ></div>
+
+        <div
+          class="red-bar absolute bottom-0 h-7 w-full border-t-4 border-white"
+        ></div>
+      </div>
+    </section>
+
+    <div id="container" class="backgroud-1 relative h-screen w-full">
+      <div class="red-bar h-7 w-full border-b-4 border-black"></div>
+      <section id="Portfolio" class="h-full w-full">
+        <div
+          class="relative grid h-full w-full grid-cols-3 divide-x-4 divide-black"
+        >
+          <div class="flex flex-col items-center p-4">
+            <h2>Title</h2>
+            <h4>Subtitle</h4>
+          </div>
+          <div class="flex flex-col items-center p-4">
+            <h2>Title</h2>
+            <div class="h-32 w-32 rotate-12 rounded-md bg-white"></div>
+            <div class="h-32 w-32 -rotate-12 rounded-md bg-white"></div>
+            <h4>Subtitle</h4>
+          </div>
+          <div class="flex flex-col items-center p-4">
+            <h2>Title</h2>
+            <h4>Subtitle</h4>
+          </div>
+        </div>
+      </section>
+      <div
+        class="red-bar absolute bottom-0 h-7 w-full border-t-4 border-black"
+      ></div>
+      <div class="red-bar h-7 w-full border-b-4 border-white"></div>
+    </div>
+
+    <section id="Contact">
+      <div
+        id="container"
+        class="relative h-screen w-full bg-[url(img/background.webp)] bg-contain bg-repeat [background-size:300px]"
+      >
+        <div class="red-bar h-7 w-full border-b-4 border-white"></div>
+        <div
+          id="content"
+          class="absolute left-1/2 top-1/2 h-3/4 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-md bg-white"
+        ></div>
+      </div>
+    </section>
+    <div class="red-bar h-10 w-full border-t-4 border-white"></div>
+    <script src="" type="module"></script>
+  </body>
+</html>
