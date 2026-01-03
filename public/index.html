@@ -4,14 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale-1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="index.js" type="module"></script>
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./figmaStyle.css" />
     <title>Cai Portfolio</title>
   </head>
   <body class="overflow-x-hidden">
-    <header>
+    <header class="group fixed left-0 top-0 z-[9999] h-24 w-full">
       <menu
-        class="fixed left-1/2 flex w-1/2 -translate-x-1/2 justify-center space-x-12 p-2 shadow-inner shadow-lg"
+        class="blackdrop-blur-lg fixed left-1/2 top-4 flex w-1/2 -translate-x-1/2 -translate-y-24 justify-center space-x-8 rounded-lg border border-white/20 bg-white/60 p-2 font-mono opacity-0 shadow-xl transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
       >
         <li>
           <a href="#" class="font-bold text-black hover:text-blue-400">About</a>
@@ -35,107 +36,322 @@
       >
         <div class="absolute inset-0">
           <div
-            class="absolute left-20 top-10 h-40 w-40 rounded-full border-4 border-[#eb7779] bg-[url(img/background.webp)] bg-contain shadow-xl blur-sm"
+            class="absolute left-20 top-10 h-40 w-40 rounded-full border-4 border-[#eb7779]/30 bg-[url(img/background.webp)] bg-contain shadow-xl blur-sm"
           ></div>
           <div
-            class="absolute -bottom-10 right-12 h-52 w-52 rounded-full border-4 border-[#eb7779] bg-[url(img/background.webp)] bg-contain shadow-xl blur-sm"
+            class="absolute bottom-10 right-12 h-52 w-52 rounded-full border-4 border-[#eb7779] bg-[url(img/background.webp)] bg-contain shadow-xl blur-sm"
           ></div>
           <div
             class="absolute -right-10 -top-10 h-52 w-52 rounded-full border-4 border-[#eb7779] bg-[url(img/background.webp)] bg-contain shadow-xl blur-sm"
           ></div>
         </div>
         <div
-          class="z-10 flex h-3/4 w-3/4 flex-col items-center justify-center rounded-md border-2 border-black bg-[url(img/cleanvisualstudiobackground.webp)] bg-cover bg-center bg-no-repeat shadow-xl"
+          class="z-10 flex h-3/4 w-3/4 flex-col items-center justify-center rounded-md border-2 border-white/50 bg-white/40 bg-[url(img/cleanvisualstudiobackground.webp)] bg-cover bg-center bg-no-repeat shadow-2xl backdrop-blur-xl"
         >
           <div
-            class="grayscale-50 mb-5 h-56 w-56 rounded-full bg-[url(img/linkedid.webp)] bg-contain bg-no-repeat"
+            class="mb-5 h-56 w-56 rounded-full bg-[url(img/linkedid.webp)] bg-contain bg-no-repeat grayscale transition-all duration-500 hover:grayscale-0"
           ></div>
-          <h1 class="text-2xl font-bold text-neutral-50">Caique R. Silva</h1>
+          <h1 class="p-5 text-3xl font-bold text-neutral-50">
+            Caique R. Silva
+          </h1>
 
-          <h2 class="text-xl text-neutral-50">
+          <h2 class="font-mono text-xl text-neutral-50">
             I.T. Professional | Software Engineer | Go-Getter
           </h2>
         </div>
       </div>
     </section>
 
-    <div
-      class="red-bar absolute bottom-0 flex h-14 w-full justify-center border-b-4 border-t-4 border-white"
-    >
-      <button
-        class="top-10 h-auto w-auto rounded-full border-2 border-black bg-white px-2"
-      >
-        &#8595;
-      </button>
-    </div>
+    <div class="red-bar absolute top-0 flex h-2 w-full"></div>
+    <div class="red-bar absolute bottom-0 flex h-10 w-full"></div>
 
     <section id="Education">
       <div
         id="container"
-        class="background-2 relative flex h-screen w-full flex-row place-items-center bg-[url(img/background.webp)] bg-repeat [background-size:300px]"
+        class="relative flex min-h-screen w-full flex-col items-center justify-start gap-10 bg-neutral-100 p-8 pt-24 md:p-16"
       >
-        <div
-          id="left-panel"
-          class="flex h-3/4 w-40 items-center justify-center rounded-r-lg border-b-4 border-r-4 border-t-4 border-white p-10 text-center text-lg tracking-wide"
-        >
-          <ul class="flex flex-col gap-y-20">
-            <li>Who I Am</li>
-            <li>Education</li>
-            <li>Technologies & Tools</li>
-          </ul>
+        <div class="text-center">
+          <h2
+            class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+          >
+            Nice to see you here
+          </h2>
+          <p
+            class="mx-auto mt-4 max-w-2xl text-lg italic leading-8 text-gray-600"
+          >
+            Get to know my story and experiences
+          </p>
         </div>
-        <div
-          id="content"
-          class="m-20 h-3/4 w-3/4 flex-1 rounded-md border border-4 border-solid border-[#eb7779] bg-white"
-        ></div>
 
         <div
-          class="red-bar absolute bottom-0 h-7 w-full border-t-4 border-white"
-        ></div>
+          class="mb-16 flex w-full flex-col items-center justify-center gap-10 md:flex-row"
+        >
+          <div
+            class="flex h-96 w-40 items-center justify-center rounded-lg bg-[#eb7779]/90 text-center text-lg tracking-wide shadow-lg backdrop-blur-md"
+          >
+            <ul class="flex w-full flex-col gap-y-8 font-mono">
+              <li
+                class="rounded-md border-black p-3 transition-all duration-200 hover:border-2 hover:bg-white/20"
+              >
+                <a href="#" id="who-I-am" class="cursor-pointer">Who I am</a>
+              </li>
+              <li
+                class="rounded-md border-black p-3 transition-all duration-200 hover:border-2 hover:bg-white/20"
+              >
+                <a href="#" id="education" class="cursor-pointer">Education</a>
+              </li>
+            </ul>
+          </div>
+          <div
+            id="content"
+            class="h-96 w-96 flex-1 rounded-lg border-4 border-white/50 bg-white p-6 shadow-xl"
+          >
+            <h3 class="text-2xl font-bold text-gray-800"></h3>
+            <p class="mt-4 text-gray-600"></p>
+          </div>
+        </div>
+
+        <div class="red-bar absolute bottom-0 h-10 w-full"></div>
       </div>
     </section>
 
-    <div id="container" class="backgroud-1 relative h-screen w-full">
-      <div class="red-bar h-7 w-full border-b-4 border-black"></div>
-      <section id="Portfolio" class="h-full w-full">
-        <div
-          class="relative grid h-full w-full grid-cols-3 divide-x-4 divide-black"
-        >
-          <div class="flex flex-col items-center p-4">
-            <h2>Title</h2>
-            <h4>Subtitle</h4>
-          </div>
-          <div class="flex flex-col items-center p-4">
-            <h2>Title</h2>
-            <div class="h-32 w-32 rotate-12 rounded-md bg-white"></div>
-            <div class="h-32 w-32 -rotate-12 rounded-md bg-white"></div>
-            <h4>Subtitle</h4>
-          </div>
-          <div class="flex flex-col items-center p-4">
-            <h2>Title</h2>
-            <h4>Subtitle</h4>
+    <section
+      id="technologies"
+      class="border-b-4 border-[#eb7779] bg-white py-12 sm:py-16"
+    >
+      <div class="mx-auto grid max-w-7xl grid-cols-2 px-6 lg:px-8">
+        <div class="grid-span-1">
+          <h2
+            class="text-center text-2xl font-semibold leading-8 text-gray-900"
+          >
+            Technologies
+          </h2>
+          <div
+            class="mt-10 inline-flex w-full flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
+          >
+            <ul
+              class="animate-infinite-scroll flex items-center justify-center md:justify-start [&_img]:max-w-none [&_li]:mx-8"
+            >
+              <li>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                  alt="JavaScript"
+                  class="h-12"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                  alt="React"
+                  class="h-12"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                  alt="Node.js"
+                  class="h-12"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg"
+                  alt="Tailwind CSS"
+                  class="h-12"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                  alt="MongoDB"
+                  class="h-12"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                  alt="Docker"
+                  class="h-12"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                  alt="Git"
+                  class="h-12"
+                />
+              </li>
+            </ul>
           </div>
         </div>
-      </section>
-      <div
-        class="red-bar absolute bottom-0 h-7 w-full border-t-4 border-black"
-      ></div>
-      <div class="red-bar h-7 w-full border-b-4 border-white"></div>
-    </div>
+
+        <div class="grid-span-1">
+          <h2
+            class="text-center text-2xl font-semibold leading-8 text-gray-900"
+          >
+            Tools
+          </h2>
+          <div
+            class="mt-10 inline-flex w-full flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
+          >
+            <ul
+              class="animate-infinite-scroll flex items-center justify-center md:justify-start [&_img]:max-w-none [&_li]:mx-8"
+            >
+              <li>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                  alt="JavaScript"
+                  class="h-12"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                  alt="React"
+                  class="h-12"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+                  alt="Node.js"
+                  class="h-12"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg"
+                  alt="Tailwind CSS"
+                  class="h-12"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+                  alt="MongoDB"
+                  class="h-12"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                  alt="Docker"
+                  class="h-12"
+                />
+              </li>
+              <li>
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+                  alt="Git"
+                  class="h-12"
+                />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Carousel Section -->
+    <section id="Portfolio" class="w-full bg-neutral-100 py-16 sm:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2
+          class="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+        >
+          My Portfolio & Projects
+        </h2>
+        <p
+          class="mx-auto mt-4 max-w-2xl text-center text-lg italic leading-8 text-gray-600"
+        >
+          Here are some of the projects I'm proud to have worked on.
+        </p>
+
+        <div
+          class="mt-12 flex snap-x snap-mandatory space-x-8 overflow-x-auto pb-6"
+        >
+          <!-- Project Card 1 -->
+          <div
+            class="w-full flex-shrink-0 snap-center rounded-xl bg-white p-6 shadow-xl md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470"
+              alt="Project 1"
+              class="h-48 w-full rounded-lg object-cover"
+            />
+            <h3 class="mt-4 text-xl font-bold text-gray-800">
+              Data Analytics Dashboard
+            </h3>
+            <p class="mt-2 text-gray-600">
+              A web-based dashboard for visualizing complex business
+              intelligence data in real-time.
+            </p>
+            <a
+              href="#"
+              class="mt-4 inline-block font-semibold text-blue-600 hover:underline"
+              >View Project &rarr;</a
+            >
+          </div>
+
+          <div
+            class="w-full flex-shrink-0 snap-center rounded-xl bg-white p-6 shadow-xl md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1470"
+              alt="Project 2"
+              class="h-48 w-full rounded-lg object-cover"
+            />
+            <h3 class="mt-4 text-xl font-bold text-gray-800">
+              E-commerce Platform
+            </h3>
+            <p class="mt-2 text-gray-600">
+              A full-stack e-commerce solution with a custom CMS and integrated
+              payment gateway.
+            </p>
+            <a
+              href="#"
+              class="mt-4 inline-block font-semibold text-blue-600 hover:underline"
+              >View Project &rarr;</a
+            >
+          </div>
+
+          <div
+            class="w-full flex-shrink-0 snap-center rounded-xl bg-white p-6 shadow-xl md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1631"
+              alt="Project 3"
+              class="h-48 w-full rounded-lg object-cover"
+            />
+            <h3 class="mt-4 text-xl font-bold text-gray-800">
+              Developer Portfolio Site
+            </h3>
+            <p class="mt-2 text-gray-600">
+              A responsive personal portfolio built with modern web technologies
+              to showcase skills and projects.
+            </p>
+            <a
+              href="#"
+              class="mt-4 inline-block font-semibold text-blue-600 hover:underline"
+              >View Project &rarr;</a
+            >
+          </div>
+          <!-- Add more project cards here -->
+        </div>
+      </div>
+    </section>
 
     <section id="Contact">
       <div
         id="container"
         class="relative h-screen w-full bg-[url(img/background.webp)] bg-contain bg-repeat [background-size:300px]"
       >
-        <div class="red-bar h-7 w-full border-b-4 border-white"></div>
+        <div class="red-bar h-10 w-full"></div>
         <div
           id="content"
           class="absolute left-1/2 top-1/2 h-3/4 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-md bg-white"
         ></div>
       </div>
     </section>
-    <div class="red-bar h-10 w-full border-t-4 border-white"></div>
-    <script src="" type="module"></script>
+    <div class="red-bar h-10 w-full"></div>
   </body>
 </html>
