@@ -106,8 +106,11 @@
             id="content"
             class="h-96 w-96 flex-1 rounded-lg border-4 border-white/50 bg-white p-6 shadow-xl"
           >
+          <div class="grid grid-cols-3 gap-2 justify-text">
             <h3 class="text-2xl font-bold text-gray-800"></h3>
-            <p class="mt-4 text-gray-600"></p>
+            <p class="mt-4 text-gray-600 col-start-1 col-end-3"></p>
+            <div id="AboutMeImg" class="w-40 h-64 mx-auto col-start-3 transition delay-150 duration-300 ease-in-out hover:translate-y-2  hover:scale-110"></div>
+          </div>
           </div>
         </div>
 
@@ -127,62 +130,10 @@
             Technologies
           </h2>
           <div
-            class="mt-10 inline-flex w-full flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
+            id="technologies" class="mt-10 inline-flex w-full flex-nowrap overflow-hidden"
           >
-            <ul
-              class="animate-infinite-scroll flex items-center justify-center md:justify-start [&_img]:max-w-none [&_li]:mx-8"
-            >
-              <li>
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-                  alt="JavaScript"
-                  class="h-12"
-                />
-              </li>
-              <li>
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-                  alt="React"
-                  class="h-12"
-                />
-              </li>
-              <li>
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-                  alt="Node.js"
-                  class="h-12"
-                />
-              </li>
-              <li>
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg"
-                  alt="Tailwind CSS"
-                  class="h-12"
-                />
-              </li>
-              <li>
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-                  alt="MongoDB"
-                  class="h-12"
-                />
-              </li>
-              <li>
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-                  alt="Docker"
-                  class="h-12"
-                />
-              </li>
-              <li>
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
-                  alt="Git"
-                  class="h-12"
-                />
-              </li>
-            </ul>
-          </div>
+
+              </div>
         </div>
 
         <div class="grid-span-1">
