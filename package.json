@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "postcss ./src/style.css -o ./public/styles.css",
+    "build": "remix vite:build",
     "start": "live-server public",
     "watch": "postcss ./src/style.css -o ./public/styles.css --watch",
     "format": "prettier --write .",

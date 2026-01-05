@@ -49,49 +49,43 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
- const listImage = document.getElementById('list-images')
- const technologyDiv = document.getElementById('technologies')
+  const technologyDiv = document.getElementById("technologies");
+  const toolsDiv = document.getElementById("tools");
 
-
-const jsDelivr = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/'
- const svgInfo = {
+  const svgInfo = {
     technologies: {
-        javaScript: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="h-12"/>',
-        react: '',
-        tailwind: '',
-        html: '',
-        css: '',
-        C: '',
-        git: ''
+      javaScript:
+        '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="h-12"/>',
+      react:
+        '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="h-12" />',
+      tailwind:
+        '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain-wordmark.svg" alt="Tailwind CSS" class="h-12" />',
+      html: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="h-12" />',
+      css: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="h-12" />',
+      git: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="h-12" />',
     },
     tools: {
-        figma: '',
-        visualStudio: '',
-        gitHub: '',
-        uxUi: ''
-    }
- }
+      figma:
+        '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" class="h-12" />',
+      visualStudio:
+        '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" class="h-12" />',
+      gitHub:
+        '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="h-12" />',
+      npm: '<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" alt="NPM" class="h-12" />',
+    },
+  };
 
-function createImage() {
+  function createIconGrid(targetDiv, imageSources) {
+    const listItems = Object.values(imageSources)
+      .map((imgHtml) => `<li class="flex items-right transition delay-500 hover:animate-bounce hover:scale-110">${imgHtml}</li>`)
+      .map((imgHtml) => `<li class="flex justify-center items-center transition duration-300 hover:animate-bounce hover:scale-125">${imgHtml}</li>`)
+      .join("");
 
-    const arrTech = svgInfo.map((imgRender)=> {
-    const myImageTechnologies = `
-        <ul
-              class="flex items-center justify-center md:justify-start [&_img]:max-w-none [&_li]:mx-8"
-            >
-              <li>
-              ${imgRender.technologies}
-              </li>
-            
-              </ul>`
-        return myImageTechnologies
-    })
+    const gridHtml = `<ul class="grid grid-cols-2 justify-right sm:grid-cols-4 gap-x-8 gap-y-10">${listItems}</ul>`;
 
-    technologyDiv.innerHTML = arrTech
+    targetDiv.innerHTML = gridHtml;
+  }
 
-}
-
-createImage()
-
-
-})
+  createIconGrid(technologyDiv, svgInfo.technologies);
+  createIconGrid(toolsDiv, svgInfo.tools);
+});
