@@ -45,9 +45,6 @@ importers:
       prettier-plugin-tailwindcss:
         specifier: ^0.7.2
         version: 0.7.2(prettier@3.7.4)
-      remix:
-        specifier: ^2.17.2
-        version: 2.17.2
       tailwindcss:
         specifier: ^3.4.18
         version: 3.4.19(yaml@2.8.2)
@@ -1292,10 +1289,6 @@ packages:
   regex-not@1.0.2:
     resolution: {integrity: sha512-J6SDjUgDxQj5NusnOtdFxDwN/+HWykR8GELwctJ7mdqhcyy1xEc4SRFHUXvxTp661YaVKAjfRLZ9cCqS6tn32A==}
     engines: {node: '>=0.10.0'}
-
-  remix@2.17.2:
-    resolution: {integrity: sha512-Q+nqMm02d+pM/8+DlWoWFGAbpANIzYW52h6LmyIkWb42VKrLaOHV/GRbpwD2CiEAsmDm5CT6/kGb/3rJbOjT6w==}
-    engines: {node: '>=18.0.0'}
 
   remove-trailing-separator@1.1.0:
     resolution: {integrity: sha512-/hS+Y0u3aOfIETiaiirUFwDBDzmXPvO+jAfKTitUngIPzdKc6Z0LoFjM/CK5PL4C+eKwHohlHAb6H0VFfmmUsw==}
@@ -2887,8 +2880,6 @@ snapshots:
     dependencies:
       extend-shallow: 3.0.2
       safe-regex: 1.1.0
-
-  remix@2.17.2: {}
 
   remove-trailing-separator@1.1.0: {}
 

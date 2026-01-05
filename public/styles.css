@@ -761,6 +761,13 @@ video {
 .gap-2 {
   gap: 0.5rem;
 }
+.gap-x-8 {
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
+}
+.gap-y-10 {
+  row-gap: 2.5rem;
+}
 .gap-y-8 {
   row-gap: 2rem;
 }
@@ -1016,6 +1023,9 @@ video {
 .delay-150 {
   transition-delay: 150ms;
 }
+.delay-500 {
+  transition-delay: 500ms;
+}
 .duration-200 {
   transition-duration: 200ms;
 }
@@ -1031,10 +1041,6 @@ video {
 .\[background-size\:300px\] {
   background-size: 300px;
 }
-.\[mask-image\:_linear-gradient\(to_right\2c transparent_0\2c _black_128px\2c _black_calc\(100\%-128px\)\2c transparent_100\%\)\] {
-  -webkit-mask-image: linear-gradient(to right,transparent 0, black 128px, black calc(100% - 128px),transparent 100%);
-          mask-image: linear-gradient(to right,transparent 0, black 128px, black calc(100% - 128px),transparent 100%);
-}
 .hover\:translate-y-2:hover {
   --tw-translate-y: 0.5rem;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1043,6 +1049,26 @@ video {
   --tw-scale-x: 1.1;
   --tw-scale-y: 1.1;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+.hover\:scale-125:hover {
+  --tw-scale-x: 1.25;
+  --tw-scale-y: 1.25;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+@keyframes bounce {
+
+  0%, 100% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+.hover\:animate-bounce:hover {
+  animation: bounce 1s infinite;
 }
 .hover\:border-2:hover {
   border-width: 2px;
@@ -1069,6 +1095,10 @@ video {
   opacity: 1;
 }
 @media (min-width: 640px) {
+
+  .sm\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 
   .sm\:px-6 {
     padding-left: 1.5rem;
@@ -1100,10 +1130,6 @@ video {
     flex-direction: row;
   }
 
-  .md\:justify-start {
-    justify-content: flex-start;
-  }
-
   .md\:p-16 {
     padding: 4rem;
   }
@@ -1118,11 +1144,4 @@ video {
     padding-left: 2rem;
     padding-right: 2rem;
   }
-}
-.\[\&_img\]\:max-w-none img {
-  max-width: none;
-}
-.\[\&_li\]\:mx-8 li {
-  margin-left: 2rem;
-  margin-right: 2rem;
 }
