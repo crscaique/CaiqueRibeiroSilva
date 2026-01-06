@@ -12,6 +12,10 @@ body {
   color: #1e293b;
 }
 
+p {
+  text-align: "justify";
+}
+
 menu {
   background-color: white;
   border-radius: 0rem 0rem 1rem 1rem;

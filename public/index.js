@@ -1,22 +1,32 @@
 document.addEventListener("DOMContentLoaded", () => {
   const whoIAmLink = document.getElementById("who-I-am");
   const educationLink = document.getElementById("education");
+  const workExperience = document.getElementById("work-experience");
+  const skills = document.getElementById("skills");
   const contentDiv = document.getElementById("content");
   const contentTitle = contentDiv.querySelector("h3");
   const contentParagraph = contentDiv.querySelector("p");
-  const aboutMeImgDiv = document.getElementById("AboutMeImg")
-  
+  const aboutMeImgDiv = document.getElementById("AboutMeImg");
 
   const contentData = {
     "who-I-am": {
       title: "About Me",
-      text: "<text>Hello there! I'm Cai, short for Caique. :) <br> It feels good to have a space where I can share a bit about myself. I am originally from Brazil and have been living in New Zealand since 2019. I'm a very easy-going person (at least, that's what I believe), however, I do love having my private moments. <br>I can be very active and have a few hobbies, such as playing beach volleyball or taking walks on cold days. I'm also passionate about games and driven by curiosity.</text>",
+      text: "<p class='text-justify'>Hello there! I'm Cai, short for Caique. :) <br> It feels good to have a space where I can share a bit about myself. I am originally from Brazil and have been living in New Zealand since 2019. I'm a very easy-going person (at least, that's what I believe), however, I do love having my private moments. <br>I can be very active and have a few hobbies, such as playing beach volleyball or taking walks on cold days. I'm also passionate about games and driven by curiosity.</p>",
       img: '<img class="h-full w-full object-cover" src="img/Caique_Who_I_am.webp" alt="Caique and Suki"/>',
     },
     education: {
       title: "My Education",
-      text: "This section will detail my educational background, including degrees, certifications, and relevant coursework. I am a lifelong learner, always seeking new knowledge.",
-      img: '<img class="h-full w-full object-scale-down " src="img/Postgraduated.webp" alt="Caique Postgraduation Ceremony"/>',
+      text: "<p class='text-justify'>Tech Enthusiast & Continuous Learner I’ve been a student of tech since high school, and I’m someone who genuinely loves the process of 'learning how to learn.' After finishing my degree in Programming Technologies back in 2017 at UNIP - Universidade Paulistana, I did not want to stop there. I spent the following years diving into the creative side of things, picking up Graphic Design and SEO to see how code and user experience actually fit together.\nIn 2024, I decided to take a big leap and start my Postgraduate in New Zealand, at the Auckland Institute of Studies. I’ve just wrapped up my grades (September 2025) and I’m now ready to take everything I’ve learned—from technical dev work to digital strategy—and put it into practice in a new professional chapter.</p>",
+      img: '<img class="h-full w-full object-scale-down " src="img/AIS certificate.webp" alt="Caique Postgraduation Ceremony"/>',
+    },
+    "work-experience": {
+      title: "Work Experience",
+      text: "<p class='text-justify'>Throughout my journey, I’ve had the opportunity to continuously expand my skill set. Even though technology has been a part of my life from a young age, I’ve already traveled a long professional path. Here, I’ll share a bit of that story.</p><br> <ul><li>DXC (former HPE)</li><li>Tivit</li></ul>",
+      img: '<img class="h-full w-full object-scale-down" src="img/work-experience.webp" alt="Person working on a laptop"/>',
+    },
+    skills: {
+      title: "Skills",
+      text: "<p></p>",
     },
   };
 
@@ -32,8 +42,22 @@ document.addEventListener("DOMContentLoaded", () => {
     contentParagraph.innerHTML = data.text;
     aboutMeImgDiv.innerHTML = data.img;
 
-    whoIAmLink.parentElement.classList.toggle("bg-white/40", sectionId === "who-I-am");
-    educationLink.parentElement.classList.toggle("bg-white/40", sectionId === "education");
+    whoIAmLink.parentElement.classList.toggle(
+      "bg-white/40",
+      sectionId === "who-I-am",
+    );
+    educationLink.parentElement.classList.toggle(
+      "bg-white/40",
+      sectionId === "education",
+    );
+    workExperience.parentElement.classList.toggle(
+      "bg-white/40",
+      sectionId === "work-experience",
+    );
+    skills.parentElement.classList.toggle(
+      "bg-white/40",
+      sectionId === "skills",
+    );
   }
 
   showContent("who-I-am");
@@ -45,6 +69,14 @@ document.addEventListener("DOMContentLoaded", () => {
   educationLink.addEventListener("click", (e) => {
     e.preventDefault();
     showContent("education");
+  });
+  workExperience.addEventListener("click", (e) => {
+    e.preventDefault();
+    showContent("work-experience");
+  });
+  skills.addEventListener("click", (e) => {
+    e.preventDefault();
+    showContent("skills");
   });
 });
 
@@ -77,8 +109,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function createIconGrid(targetDiv, imageSources) {
     const listItems = Object.values(imageSources)
-      .map((imgHtml) => `<li class="flex items-right transition delay-500 hover:animate-bounce hover:scale-110">${imgHtml}</li>`)
-      .map((imgHtml) => `<li class="flex justify-center items-center transition duration-300 hover:animate-bounce hover:scale-125">${imgHtml}</li>`)
+      .map(
+        (imgHtml) =>
+          `<li class="flex items-right transition delay-500 hover:animate-bounce hover:scale-110">${imgHtml}</li>`,
+      )
+      .map(
+        (imgHtml) =>
+          `<li class="flex justify-center items-center transition duration-300 hover:animate-bounce hover:scale-125">${imgHtml}</li>`,
+      )
       .join("");
 
     const gridHtml = `<ul class="grid grid-cols-2 justify-right sm:grid-cols-4 gap-x-8 gap-y-10">${listItems}</ul>`;
