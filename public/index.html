@@ -86,7 +86,7 @@
           class="mb-16 flex w-full flex-col items-center justify-center gap-10 md:flex-row"
         >
           <div
-            class="flex h-96 w-40 items-center justify-center rounded-lg bg-[#eb7779]/90 text-center text-justify text-lg tracking-wide shadow-lg backdrop-blur-md"
+            class="flex h-96 w-40 items-center justify-center rounded-lg bg-[#eb7779]/90 text-center text-lg tracking-wide shadow-lg backdrop-blur-md"
           >
             <ul class="flex w-full flex-col gap-y-8 font-mono">
               <li
@@ -117,9 +117,9 @@
             id="content"
             class="h-96 w-96 flex-1 rounded-lg border-4 border-white/50 bg-white p-6 shadow-xl"
           >
-            <div class="justify-text grid grid-cols-3 gap-2">
+            <div class="justify-text grid h-full grid-cols-3 gap-2">
               <h3 class="text-2xl font-bold text-gray-800"></h3>
-              <p class="col-start-1 col-end-3 mt-4 text-gray-600"></p>
+              <p class="col-start-1 col-end-3 mt-4 h-full overflow-y-auto overscroll-contain pr-4 text-gray-600"></p>
               <div
                 id="AboutMeImg"
                 class="col-start-3 mx-auto h-64 w-40 transition delay-150 duration-300 ease-in-out hover:translate-y-2 hover:scale-110"
@@ -163,7 +163,6 @@
       </div>
     </section>
 
-    <!-- Portfolio Carousel Section -->
     <section id="Portfolio" class="w-full bg-neutral-100 py-16 sm:py-24">
       <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2
@@ -180,24 +179,22 @@
         <div
           class="mt-12 flex snap-x snap-mandatory space-x-8 overflow-x-auto pb-6"
         >
-          <!-- Project Card 1 -->
           <div
             class="w-full flex-shrink-0 snap-center rounded-xl bg-white p-6 shadow-xl md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]"
           >
             <img
-              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470"
+              src="img/ScholarSpark.webp"
               alt="Project 1"
               class="h-48 w-full rounded-lg object-cover"
             />
             <h3 class="mt-4 text-xl font-bold text-gray-800">
-              Data Analytics Dashboard
+              Scholar Spark - Systematic Literature
             </h3>
             <p class="mt-2 text-gray-600">
-              A web-based dashboard for visualizing complex business
-              intelligence data in real-time.
+              A precision-driven platform that streamlines discovery, organization, and synthesis of research.
             </p>
             <a
-              href="#"
+              href="https://www.scholarspark.ai/" target="_blank"
               class="mt-4 inline-block font-semibold text-blue-600 hover:underline"
               >View Project &rarr;</a
             >
@@ -207,16 +204,15 @@
             class="w-full flex-shrink-0 snap-center rounded-xl bg-white p-6 shadow-xl md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]"
           >
             <img
-              src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1470"
+              src="img/AzurexAWS.webp"
               alt="Project 2"
               class="h-48 w-full rounded-lg object-cover"
             />
             <h3 class="mt-4 text-xl font-bold text-gray-800">
-              E-commerce Platform
+              Cloud Platforms - Evaluation Paper
             </h3>
             <p class="mt-2 text-gray-600">
-              A full-stack e-commerce solution with a custom CMS and integrated
-              payment gateway.
+              This repository contains the evaluation of two widely used cloud platforms available in the market: Microsoft Azure and Amazon Web Services (AWS).
             </p>
             <a
               href="#"
@@ -229,16 +225,15 @@
             class="w-full flex-shrink-0 snap-center rounded-xl bg-white p-6 shadow-xl md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.333rem)]"
           >
             <img
-              src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?q=80&w=1631"
+              src="https://github.com/crscaique/Tamaki-Makaurau"
               alt="Project 3"
               class="h-48 w-full rounded-lg object-cover"
             />
             <h3 class="mt-4 text-xl font-bold text-gray-800">
-              Developer Portfolio Site
+              Tamaki Makaurau - Live!
             </h3>
             <p class="mt-2 text-gray-600">
-              A responsive personal portfolio built with modern web technologies
-              to showcase skills and projects.
+              A web-platform created for Event-makers and attendies
             </p>
             <a
               href="#"
@@ -246,7 +241,6 @@
               >View Project &rarr;</a
             >
           </div>
-          <!-- Add more project cards here -->
         </div>
       </div>
     </section>
@@ -254,13 +248,23 @@
     <section id="Contact">
       <div
         id="container"
-        class="relative h-screen w-full bg-[url(img/background.webp)] bg-contain bg-repeat [background-size:300px]"
+        class="relative h-screen w-full red-bar bg-contain bg-repeat [background-size:300px]"
       >
-        <div class="red-bar h-10 w-full"></div>
+        <div class=" h-10 w-full"></div>
         <div
           id="content"
-          class="absolute left-1/2 top-1/2 h-3/4 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-md bg-white"
-        ></div>
+          class="absolute w-full bg-black left-1/2 top-1/2 h-3/4 w-3/4 -translate-x-1/2 -translate-y-1/2 rounded-md text-center"
+        >
+        <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Contact me</h2>
+        <p
+          class="mx-auto mt-4 max-w-2xl text-center text-lg italic leading-8 text-gray-600"
+        >
+          Let's get in touch!.
+        </p>
+        <div>
+
+        </div>
+      </div>
       </div>
     </section>
     <div class="red-bar h-10 w-full"></div>
