@@ -11,8 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const contentData = {
     "who-I-am": {
       title: "About Me",
-      text: `<p class='text-justify'>Hello there! I'm Cai, short for Caique. :) <br> It feels good to have a space where I can share a bit about myself. I am originally from Brazil and have been living in New Zealand since 2019. I'm a very easy-going person (at least, that's what I believe), however, I do love having my private moments. <br>I can be very active and have a few hobbies, such as playing beach volleyball or taking walks on cold days. I'm also passionate about games and driven by curiosity.</p>`
-    ,
+      text: `<p class='text-justify'>Hello there! I'm Cai, short for Caique. :) <br> It feels good to have a space where I can share a bit about myself. I am originally from Brazil and have been living in New Zealand since 2019. I'm a very easy-going person (at least, that's what I believe), however, I do love having my private moments. <br>I can be very active and have a few hobbies, such as playing beach volleyball or taking walks on cold days. I'm also passionate about games and driven by curiosity.</p>`,
       img: '<img class="h-full w-full object-cover" src="img/Caique_Who_I_am.webp" alt="Caique and Suki"/>',
     },
     education: {
@@ -29,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <li>DXC (former HPE)</li>
           <li>Tivit</li>
           </ul>`,
-      img: ''
+      img: "",
     },
     skills: {
       title: "Skills",
