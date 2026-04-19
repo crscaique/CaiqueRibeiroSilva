@@ -5,6 +5,7 @@
   "scripts": {
     "build": "postcss ./src/style.css -o ./public/styles.css --minify",
     "start": "live-server public",
+    "dev": "concurrently \"pnpm watch\" \"pnpm start\"",
     "watch": "postcss ./src/style.css -o ./public/styles.css --watch",
     "format": "prettier --write .",
     "type-check": "tsc --noEmit",
@@ -24,6 +25,7 @@
     "@typescript-eslint/eslint-plugin": "^8.50.1",
     "@typescript-eslint/parser": "^8.50.1",
     "autoprefixer": "^10.4.22",
+    "baseline-browser-mapping": "^2.10.13",
     "concurrently": "^9.2.1",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",

@@ -26,6 +26,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.22
         version: 10.4.23(postcss@8.5.6)
+      baseline-browser-mapping:
+        specifier: ^2.10.13
+        version: 2.10.13
       concurrently:
         specifier: ^9.2.1
         version: 9.2.1
@@ -465,11 +468,12 @@ packages:
       }
     engines: { node: ">=0.10.0" }
 
-  baseline-browser-mapping@2.9.11:
+  baseline-browser-mapping@2.10.13:
     resolution:
       {
-        integrity: sha512-Sg0xJUNDU1sJNGdfGWhVHX0kkZ+HWcvmVymJbj6NSgZZmW/8S9Y2HQ5euytnIgakgxN6papOAWiwDo1ctFDcoQ==,
+        integrity: sha512-BL2sTuHOdy0YT1lYieUxTw/QMtPBC3pmlJC6xk8BBYVv6vcw3SGdKemQ+Xsx9ik2F/lYDO9tqsFQH1r9PFuHKw==,
       }
+    engines: { node: ">=6.0.0" }
     hasBin: true
 
   basic-auth@2.0.1:
@@ -680,10 +684,10 @@ packages:
         integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==,
       }
 
-  cors@2.8.5:
+  cors@2.8.6:
     resolution:
       {
-        integrity: sha512-KIHbLJqu73RGr/hnbrO9uBeixNGuvSQjul/jdFvS/KFSIH1hWVd1ng7zOHx+YrEfInLG7q4n6GHQ9cDtxv/P6g==,
+        integrity: sha512-tJtZBBHA6vjIAaF6EnIaq6laBBP9aq/Y3ouVJjEfoHbRBcHBAHYcMh/w8LDrk2PvIMMq8gmopa5D4V8RmbrxGw==,
       }
     engines: { node: ">= 0.10" }
 
@@ -3030,7 +3034,7 @@ snapshots:
       mixin-deep: 1.3.2
       pascalcase: 0.1.1
 
-  baseline-browser-mapping@2.9.11: {}
+  baseline-browser-mapping@2.10.13: {}
 
   basic-auth@2.0.1:
     dependencies:
@@ -3079,7 +3083,7 @@ snapshots:
 
   browserslist@4.28.1:
     dependencies:
-      baseline-browser-mapping: 2.9.11
+      baseline-browser-mapping: 2.10.13
       caniuse-lite: 1.0.30001761
       electron-to-chromium: 1.5.267
       node-releases: 2.0.27
@@ -3192,7 +3196,7 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cors@2.8.5:
+  cors@2.8.6:
     dependencies:
       object-assign: 4.1.1
       vary: 1.1.2
@@ -3678,7 +3682,7 @@ snapshots:
       chokidar: 2.1.8
       colors: 1.4.0
       connect: 3.7.0
-      cors: 2.8.5
+      cors: 2.8.6
       event-stream: 3.3.4
       faye-websocket: 0.11.4
       http-auth: 3.1.3
