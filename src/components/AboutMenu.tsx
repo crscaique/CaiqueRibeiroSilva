@@ -82,14 +82,14 @@ export function AboutMenu() {
   return (
     <div className="flex w-full flex-col items-center justify-center gap-5 lg:flex-row lg:gap-8">
       <div className="w-full lg:hidden">
-        <ul className="flex w-full flex-nowrap justify-start gap-2 overflow-x-auto font-mono text-lg sm:text-sm">
+        <ul className="grid w-full grid-cols-2 gap-1 font-mono text-sm sm:grid-cols-4 sm:gap-2 sm:text-xs">
           {aboutSections.map((section) => {
             const isActive = section.id === activeSectionId;
 
             return (
               <li
                 key={section.id}
-                className="shrink-0 px-2 py-1 transition-all duration-200 hover:bg-white/20"
+                className="px-2 py-1 text-center transition-all duration-200 hover:bg-white/60"
               >
                 <button
                   type="button"
@@ -104,7 +104,7 @@ export function AboutMenu() {
         </ul>
       </div>
 
-      <div className="hidden h-[22rem] w-56 items-center justify-center rounded-lg bg-slate-200 text-center text-lg tracking-wide shadow-lg backdrop-blur-md lg:h-[26rem] lg:flex">
+      <div className="hidden h-[22rem] w-56 items-center justify-center text-center text-lg tracking-wide backdrop-blur-md lg:h-[26rem] lg:border-r-2 lg:border-black lg:pr-4 lg:flex">
         <ul className="flex w-full flex-col gap-y-8 font-mono">
           {aboutSections.map((section) => {
             const isActive = section.id === activeSectionId;
@@ -112,7 +112,7 @@ export function AboutMenu() {
             return (
               <li
                 key={section.id}
-                className="p-3 transition-all duration-200 hover:bg-white/20"
+                className="p-3 transition-all duration-200 hover:bg-white/60"
               >
                 <button
                   type="button"
@@ -129,13 +129,13 @@ export function AboutMenu() {
 
       <div
         id="content"
-        className="relative h-[22rem] w-full max-w-full lg:h-[26rem] lg:w-[52rem]"
+        className="relative h-[22rem] w-full max-w-full bg-white lg:h-[26rem] lg:w-[52rem]"
       >
         <button
           type="button"
           onClick={scrollRailRight}
           aria-label="Scroll right for more information"
-          className="absolute top-1/2 right-2 z-20 -translate-y-1/2 rounded-full border border-slate-300 bg-white/95 px-3 py-2 text-xl font-semibold text-slate-700 shadow-md transition hover:bg-white lg:hidden"
+          className="absolute top-1/2 right-2 z-20 -translate-y-1/2 rounded-full border border-black bg-black px-3 py-2 text-xl font-semibold text-white shadow-md transition hover:bg-slate-900 lg:hidden"
         >
           →
         </button>
@@ -143,14 +143,14 @@ export function AboutMenu() {
         <div
           ref={contentRailRef}
           onWheel={handleLargeWheelScroll}
-          className="h-full w-full overflow-x-auto overflow-y-hidden rounded-lg border-4 border-white/50 bg-white p-4 shadow-xl"
+          className="h-full w-full overflow-x-auto overflow-y-hidden rounded-lg border-4 border-white/50 p-4 shadow-xl lg:border-0 lg:shadow-none"
         >
           <div className="flex h-full w-full snap-x snap-mandatory gap-0">
             {[activeSection.description, ...activeSection.details].map(
               (text, index) => (
                 <article
                   key={`${activeSection.id}-${index}`}
-                  className="grid h-full w-full shrink-0 snap-start grid-cols-1 content-start rounded-lg bg-white p-5"
+                  className="grid h-full w-full shrink-0 snap-start grid-cols-1 content-start rounded-lg p-5"
                 >
                   <h3 className="text-2xl font-bold text-gray-800">
                     {activeSection.title}

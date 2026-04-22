@@ -64,12 +64,12 @@ export function PageArrow({
 
   const edgeClass =
     placement === "bottom"
-      ? "absolute inset-x-0 bottom-0 pb-4"
+      ? "absolute inset-x-0 bottom-0 z-20 pb-4"
       : placement === "top"
-        ? "absolute inset-x-0 top-0 pt-4"
+        ? "absolute inset-x-0 top-0 z-20 pt-4"
         : placement === "left"
-          ? "absolute inset-y-0 left-0 pl-4"
-          : "absolute inset-y-0 right-0 pr-4";
+          ? "absolute inset-y-0 left-0 z-20 pl-4"
+          : "absolute inset-y-0 right-0 z-20 pr-4";
 
   const arrow =
     direction === "down"

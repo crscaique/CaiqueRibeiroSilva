@@ -5,7 +5,7 @@ import "./index.css";
 
 function App() {
   return (
-    <div className="min-h-screen overflow-x-hidden overflow-y-auto">
+    <div id="app-scroll-root" className="min-h-screen overflow-x-hidden overflow-y-auto">
       <Homepage />
       <About />
       <TechnologiesTools />

@@ -33,14 +33,16 @@ export function Homepage() {
           </div>
         </div>
 
-        <PageArrow
-          direction="down"
-          placement="bottom"
-          onArrowClick={handleScrollToNextSection}
-          ariaLabel="Scroll to next section"
-          keepFullWidthLine={true}
-          neverHidden={true}
-        />
+        <div className="relative z-[60]">
+          <PageArrow
+            direction="down"
+            placement="bottom"
+            onArrowClick={handleScrollToNextSection}
+            ariaLabel="Scroll to next section"
+            keepFullWidthLine={true}
+            neverHidden={true}
+          />
+        </div>
       </div>
     </section>
   );
