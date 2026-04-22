@@ -1,18 +1,12 @@
 import { TechnologiesToolsMenu } from "./TechnologiesToolsMenu";
 import { PageArrow } from "./PageArrow";
+import { scrollToPreviousSection } from "../utils/sectionScroll";
 
 export function TechnologiesTools() {
-  const scrollToPreviousSection = () => {
-    const currentSection = document.getElementById("technologies-tools");
-    const previousSection =
-      currentSection?.previousElementSibling as HTMLElement | null;
-
-    if (previousSection) {
-      previousSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-
-    window.scrollBy({ top: -window.innerHeight, behavior: "smooth" });
+  const handleScrollToPreviousSection = () => {
+    scrollToPreviousSection({
+      currentSectionId: "technologies-tools",
+    });
   };
 
   return (
@@ -28,11 +22,11 @@ export function TechnologiesTools() {
         <PageArrow
           direction="up"
           placement="bottom"
-          onArrowClick={scrollToPreviousSection}
+          onArrowClick={handleScrollToPreviousSection}
           ariaLabel="Scroll to previous section"
-          maxWidthClass="max-w-none"
-          sidePaddingClass="px-0"
-          arrowWrapperClassName="bg-white/70 p-1.5 shadow-sm"
+          keepFullWidthLine={true}
+          lineClassName="bg-slate-500"
+          neverHidden={true}
         />
       </div>
     </section>

@@ -1,21 +1,17 @@
 import linkedInProfile from "../img/linkedid.webp";
 import { PageArrow } from "./PageArrow";
+import { scrollToNextSection } from "../utils/sectionScroll";
 
 export function Homepage() {
-  const scrollToNextSection = () => {
-    const homeSection = document.getElementById("homepage");
-    const nextSection = homeSection?.nextElementSibling as HTMLElement | null;
-
-    if (nextSection) {
-      nextSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      return;
-    }
-
-    window.scrollBy({ top: window.innerHeight, behavior: "smooth" });
+  const handleScrollToNextSection = () => {
+    scrollToNextSection({
+      currentSectionId: "Homepage",
+      preferredTargetId: "About",
+    });
   };
 
   return (
-    <section id="homepage">
+    <section id="Homepage">
       <div
         id="container"
         className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col overflow-hidden bg-white lg:bg-slate-950"
@@ -40,10 +36,10 @@ export function Homepage() {
         <PageArrow
           direction="down"
           placement="bottom"
-          onArrowClick={scrollToNextSection}
+          onArrowClick={handleScrollToNextSection}
           ariaLabel="Scroll to next section"
-          maxWidthClass="max-w-none"
-          sidePaddingClass="px-0"
+          keepFullWidthLine={true}
+          neverHidden={true}
         />
       </div>
     </section>

@@ -80,7 +80,7 @@ export function AboutMenu() {
   };
 
   return (
-    <div className="mb-16 flex w-full flex-col items-center justify-center gap-6 lg:flex-row lg:gap-10">
+    <div className="flex w-full flex-col items-center justify-center gap-5 lg:flex-row lg:gap-8">
       <div className="w-full lg:hidden">
         <ul className="flex w-full flex-nowrap justify-start gap-2 overflow-x-auto font-mono text-lg sm:text-sm">
           {aboutSections.map((section) => {
@@ -104,7 +104,7 @@ export function AboutMenu() {
         </ul>
       </div>
 
-      <div className="hidden h-[28rem] w-56 items-center justify-center rounded-lg bg-slate-400 text-center text-lg tracking-wide shadow-lg backdrop-blur-md lg:flex">
+      <div className="hidden h-[22rem] w-56 items-center justify-center rounded-lg bg-slate-200 text-center text-lg tracking-wide shadow-lg backdrop-blur-md lg:h-[26rem] lg:flex">
         <ul className="flex w-full flex-col gap-y-8 font-mono">
           {aboutSections.map((section) => {
             const isActive = section.id === activeSectionId;
@@ -129,7 +129,7 @@ export function AboutMenu() {
 
       <div
         id="content"
-        className="relative h-[28rem] w-full max-w-full lg:w-[52rem]"
+        className="relative h-[22rem] w-full max-w-full lg:h-[26rem] lg:w-[52rem]"
       >
         <button
           type="button"
