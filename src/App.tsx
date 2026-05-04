@@ -1,6 +1,8 @@
 import { Homepage } from "./components/Homepage";
 import { About } from "./components/About";
 import { TechnologiesTools } from "./components/TechnologiesTools";
+import { Projects } from "./components/Projects";
+import { FindMe} from "./components/FindMe";
 import "./index.css";
 
 function App() {
@@ -9,6 +11,8 @@ function App() {
       <Homepage />
       <About />
       <TechnologiesTools />
+      <Projects/>
+      <FindMe/>
     </div>
   );
 }

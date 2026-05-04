@@ -27,10 +27,12 @@ export function PageArrow({
   buttonClassName = "",
   arrowWrapperClassName = "",
   hideAfterMs = 10000,
-  neverHidden
+  neverHidden,
 }: PageArrowProps) {
   const hideTimerRef = useRef<number | null>(null);
+  const bounceTimerRef = useRef<number | null>(null);
   const [showArrow, setShowArrow] = useState(true);
+  const [isBouncing, setIsBouncing] = useState(true);
 
   const scheduleHideArrow = () => {
     if (hideTimerRef.current) {
@@ -38,7 +40,9 @@ export function PageArrow({
     }
 
     if (neverHidden) {
-      setShowArrow(true);
+      if (!showArrow) {
+        setShowArrow(true);
+      }
       return;
     }
 
@@ -57,9 +61,30 @@ export function PageArrow({
     };
   }, [hideAfterMs, neverHidden]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsBouncing(false);
+      if (bounceTimerRef.current) {
+        clearTimeout(bounceTimerRef.current);
+      }
+      bounceTimerRef.current = window.setTimeout(() => {
+        setIsBouncing(true);
+      }, 5000); // Resume bouncing after 5 seconds of inactivity
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (bounceTimerRef.current) {
+        clearTimeout(bounceTimerRef.current);
+      }
+    };
+  }, []);
+
   const revealArrow = () => {
     setShowArrow(true);
-    scheduleHideArrow();
+    //scheduleHideArrow();
   };
 
   const edgeClass =
@@ -106,7 +131,9 @@ export function PageArrow({
             type="button"
             onClick={onArrowClick}
             aria-label={ariaLabel}
-            className={`cursor-pointer rounded-full border border-slate-300 bg-white/90 px-3 py-2 text-2xl leading-none text-slate-700 shadow-md transition hover:bg-white ${showArrow ? (placement === "top" ? "opacity-25" : "opacity-100") : "pointer-events-none opacity-0"} ${buttonClassName}`}
+            className={`cursor-pointer rounded-full border border-slate-300 bg-white/90 px-3 py-2 text-2xl leading-none text-slate-700 shadow-md transition hover:bg-white ${showArrow ? (placement === "top" ? "opacity-25" : "opacity-100") : "pointer-events-none opacity-0"} ${
+              isBouncing && (direction === "down" ? "animate-bounce-y-down" : "animate-bounce-y-up")
+            } ${buttonClassName}`}
           >
             {arrow}
           </button>

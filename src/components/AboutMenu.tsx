@@ -56,6 +56,7 @@ export function AboutMenu() {
   const [activeSectionId, setActiveSectionId] = useState<
     (typeof aboutSections)[number]["id"]
   >(aboutSections[0].id);
+  const [isBouncing, setIsBouncing] = useState(true);
 
   const activeSection =
     aboutSections.find((section) => section.id === activeSectionId) ??
@@ -65,11 +66,36 @@ export function AboutMenu() {
     contentRailRef.current?.scrollTo({ left: 0, behavior: "smooth" });
   }, [activeSectionId]);
 
+  useEffect(() => {
+      // Start bouncing after a delay
+    const bounceTimer = window.setTimeout(() => setIsBouncing(true), 5000);
+ 
+    const stopBouncing = () => {
+      // Only update state if it's currently true to avoid unnecessary re-renders
+      setIsBouncing((prevIsBouncing) => {
+        if (prevIsBouncing) {
+          clearTimeout(bounceTimer);
+          return false;
+        }
+        return prevIsBouncing;
+      });
+    };
+    window.addEventListener("scroll", stopBouncing);
+    return () => window.removeEventListener("scroll", stopBouncing);
+  }, []);
+
   const scrollRailRight = () => {
     const rail = contentRailRef.current;
     if (!rail) return;
 
     rail.scrollBy({ left: rail.clientWidth, behavior: "smooth" });
+  };
+
+  const scrollRailLeft = () => {
+    const rail = contentRailRef.current;
+    if (!rail) return;
+
+    rail.scrollBy({ left: -rail.clientWidth, behavior: "smooth" });
   };
 
   const handleLargeWheelScroll = (event: WheelEvent<HTMLDivElement>) => {
@@ -129,13 +155,21 @@ export function AboutMenu() {
 
       <div
         id="content"
-        className="relative h-[22rem] w-full max-w-full bg-white lg:h-[26rem] lg:w-[52rem]"
+        className="relative h-[22rem] w-full max-w-full lg:h-[26rem] lg:w-[52rem]"
       >
+        <button
+          type="button"
+          onClick={scrollRailLeft}
+          aria-label="Scroll left for more information"
+          className={`absolute top-1/2 left-2 z-20 -translate-y-1/2 rounded-full border border-black bg-black px-3 py-2 text-xl font-semibold text-white shadow-md transition hover:bg-slate-900 ${isBouncing ? "animate-bounce-x-left" : ""}`}
+        >
+          ←
+        </button>
         <button
           type="button"
           onClick={scrollRailRight}
           aria-label="Scroll right for more information"
-          className="absolute top-1/2 right-2 z-20 -translate-y-1/2 rounded-full border border-black bg-black px-3 py-2 text-xl font-semibold text-white shadow-md transition hover:bg-slate-900 lg:hidden"
+          className={`absolute top-1/2 right-2 z-20 -translate-y-1/2 rounded-full border border-black bg-black px-3 py-2 text-xl font-semibold text-white shadow-md transition hover:bg-slate-900 ${isBouncing ? "animate-bounce-x-right" : ""}`}
         >
           →
         </button>
@@ -143,6 +177,8 @@ export function AboutMenu() {
         <div
           ref={contentRailRef}
           onWheel={handleLargeWheelScroll}
+          onMouseEnter={() => setIsBouncing(false)}
+          onTouchStart={() => setIsBouncing(false)}
           className="h-full w-full overflow-x-auto overflow-y-hidden rounded-lg border-4 border-white/50 p-4 shadow-xl lg:border-0 lg:shadow-none"
         >
           <div className="flex h-full w-full snap-x snap-mandatory gap-0">
