@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { AboutMenu } from "./AboutMenu";
 import { PageArrow } from "./PageArrow";
 import {
@@ -7,14 +6,6 @@ import {
 } from "../utils/sectionScroll";
 
 export function About() {
-  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
-
-  useEffect(() => {
-    const handleResize = () => setIsLargeScreen(window.innerWidth >= 1024);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   const handleScrollToNextSection = () => {
     scrollToNextSection({
       currentSectionId: "About",

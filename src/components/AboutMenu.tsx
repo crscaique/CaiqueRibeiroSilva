@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState, type WheelEvent } from "react";
-import { aboutSections, type AboutSection } from "../data/About";
+import { aboutSections } from "../data/About";
 
 export function AboutMenu() {
   const contentRailRef = useRef<HTMLDivElement | null>(null);
   const [activeSectionId, setActiveSectionId] = useState<
     (typeof aboutSections)[number]["id"]
   >("technologies-tools");
-  const [isBouncing, setIsBouncing] = useState(false);
-  const [hasBounced, setHasBounced] = useState(false);
   const [arrowStyle, setArrowStyle] = useState<{ top?: string }>({});
   const menuContainerRef = useRef<HTMLDivElement | null>(null);
   // State for the new mobile accordion
@@ -32,36 +30,6 @@ export function AboutMenu() {
       }
     }
   }, [activeSectionId]);
-
-  useEffect(() => {
-    // Start bouncing after a delay, but only if it hasn't bounced before.
-    const bounceTimer = window.setTimeout(() => {
-      if (!hasBounced) {
-        setIsBouncing(true);
-        // Set hasBounced to true so it doesn't bounce again on re-renders.
-        setHasBounced(true);
-      }
-    }, 1500); // Start after 1.5 seconds
-
-    // Cleanup the timer if the component unmounts.
-    return () => {
-      clearTimeout(bounceTimer);
-    };
-  }, [hasBounced]); // Depend on hasBounced to prevent re-running the timer.
-
-  const scrollRailRight = () => {
-    const rail = contentRailRef.current;
-    if (!rail) return;
-
-    rail.scrollBy({ left: rail.clientWidth, behavior: "smooth" });
-  };
-
-  const scrollRailLeft = () => {
-    const rail = contentRailRef.current;
-    if (!rail) return;
-
-    rail.scrollBy({ left: -rail.clientWidth, behavior: "smooth" });
-  };
 
   const handleLargeWheelScroll = (event: WheelEvent<HTMLDivElement>) => {
     if (window.innerWidth >= 1024 && Math.abs(event.deltaY) > 0) {
