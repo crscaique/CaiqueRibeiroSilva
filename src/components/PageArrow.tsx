@@ -14,6 +14,7 @@ type PageArrowProps = {
   hideAfterMs?: number;
   cursor?: string;
   neverHidden?: boolean;
+  bounce?: boolean
 };
 export function PageArrow({
   direction,
@@ -26,13 +27,28 @@ export function PageArrow({
   lineClassName = "bg-neutral-100",
   buttonClassName = "",
   arrowWrapperClassName = "",
-  hideAfterMs = 10000,
+  hideAfterMs = 5000,
   neverHidden,
+  bounce = false
 }: PageArrowProps) {
   const hideTimerRef = useRef<number | null>(null);
-  const bounceTimerRef = useRef<number | null>(null);
   const [showArrow, setShowArrow] = useState(true);
-  const [isBouncing, setIsBouncing] = useState(true);
+  const [animationClass, setAnimationClass] = useState("");
+
+  useEffect(() => {
+    if (bounce) {
+      setAnimationClass("animate-bounce-5");
+
+      // The animation runs for 5 seconds (1s * 5 iterations).
+      // We set a timer to remove the class after it finishes
+      // so the animation can be re-triggered if needed.
+      const timer = setTimeout(() => {
+        setAnimationClass("");
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [bounce]);
 
   const scheduleHideArrow = () => {
     if (hideTimerRef.current) {
@@ -61,40 +77,21 @@ export function PageArrow({
     };
   }, [hideAfterMs, neverHidden]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsBouncing(false);
-      if (bounceTimerRef.current) {
-        clearTimeout(bounceTimerRef.current);
-      }
-      bounceTimerRef.current = window.setTimeout(() => {
-        setIsBouncing(true);
-      }, 5000); // Resume bouncing after 5 seconds of inactivity
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      if (bounceTimerRef.current) {
-        clearTimeout(bounceTimerRef.current);
-      }
-    };
-  }, []);
-
   const revealArrow = () => {
-    setShowArrow(true);
-    //scheduleHideArrow();
+    if (!showArrow) {
+      setShowArrow(true);
+    }
+    scheduleHideArrow();
   };
 
   const edgeClass =
     placement === "bottom"
-      ? "absolute inset-x-0 bottom-0 z-20 pb-4"
+      ? "absolute inset-x-0 bottom-0 z-40 pb-4"
       : placement === "top"
-        ? "absolute inset-x-0 top-0 z-20 pt-4"
+        ? "absolute inset-x-0 top-0 z-40 pt-2"
         : placement === "left"
-          ? "absolute inset-y-0 left-0 z-20 pl-4"
-          : "absolute inset-y-0 right-0 z-20 pr-4";
+          ? "absolute inset-y-0 left-0 z-40 pl-4"
+          : "absolute inset-y-0 right-0 z-40 pr-4";
 
   const arrow =
     direction === "down"
@@ -131,9 +128,7 @@ export function PageArrow({
             type="button"
             onClick={onArrowClick}
             aria-label={ariaLabel}
-            className={`cursor-pointer rounded-full border border-slate-300 bg-white/90 px-3 py-2 text-2xl leading-none text-slate-700 shadow-md transition hover:bg-white ${showArrow ? (placement === "top" ? "opacity-25" : "opacity-100") : "pointer-events-none opacity-0"} ${
-              isBouncing && (direction === "down" ? "animate-bounce-y-down" : "animate-bounce-y-up")
-            } ${buttonClassName}`}
+            className={`cursor-pointer rounded-full border border-slate-300 bg-white/90 px-3 py-2 text-2xl leading-none text-slate-700 shadow-md transition hover:bg-white ${showArrow ? (placement === "top" ? "opacity-25" : "opacity-100") : "pointer-events-none opacity-0"} ${animationClass} ${buttonClassName}`}
           >
             {arrow}
           </button>

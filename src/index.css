@@ -5,3 +5,46 @@
   background-size: 300px;
   background-repeat: repeat;
 }
+
+
+@layer utilities {
+  @keyframes bounce-subtle {
+    0%,
+    100% {
+      transform: translateY(0);
+      animation-timing-function: ease-out;
+    }
+    50% {
+      transform: translateY(-25%);
+      animation-timing-function: ease-in;
+    }
+  }
+
+  .animate-bounce-5 {
+    animation: bounce-subtle 1s 5;
+  }
+
+  .arrow-up-lime {
+    width: 0;
+    height: 0;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 12px solid; /* Color set via inline style for opacity */
+  }
+
+  .arrow-left-lime {
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-right: 12px solid; /* Color set via inline style */
+  }
+
+  .arrow-right-lime {
+    width: 0;
+    height: 0;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 12px solid; /* Color set via inline style */
+  }
+}

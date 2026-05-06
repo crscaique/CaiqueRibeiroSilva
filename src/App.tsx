@@ -3,6 +3,7 @@ import { About } from "./components/About";
 import { TechnologiesTools } from "./components/TechnologiesTools";
 import { Projects } from "./components/Projects";
 import { FindMe} from "./components/FindMe";
+import { AIAssistant } from "./components/AIAssistant";
 import "./index.css";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
       <TechnologiesTools />
       <Projects/>
       <FindMe/>
+      <AIAssistant />
     </div>
   );
 }

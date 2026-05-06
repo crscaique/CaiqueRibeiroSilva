@@ -1,62 +1,20 @@
 import { useEffect, useRef, useState, type WheelEvent } from "react";
-
-const aboutSections = [
-  {
-    id: "who-I-am",
-    label: "Who I am",
-    title: "Who I am",
-    description:
-      "I am a developer focused on building clean, responsive, and user-friendly interfaces with attention to detail and performance.",
-    details: [
-      "I enjoy transforming ideas into polished interfaces that feel fast and intuitive.",
-      "My work style is iterative: ship, gather feedback, and improve with clear priorities.",
-      "I focus on consistency, clean component structure, and maintainable UI patterns.",
-    ],
-  },
-  {
-    id: "education",
-    label: "Education",
-    title: "Education",
-    description:
-      "My education includes hands-on learning, continuous practice, and adapting to modern frontend tools and best practices.",
-    details: [
-      "I combine foundational theory with practical implementation in real projects.",
-      "I keep learning through documentation, experimentation, and code reviews.",
-      "Continuous learning helps me stay aligned with modern frontend standards.",
-    ],
-  },
-  {
-    id: "work-experience",
-    label: "Work Experience",
-    title: "Work Experience",
-    description:
-      "I have worked on responsive components and interfaces, balancing structure, styling, and usability across different screen sizes.",
-    details: [
-      "I have built reusable components for interfaces used across multiple pages.",
-      "I collaborate to align design intent with engineering constraints and timelines.",
-      "I prioritize performance, accessibility, and responsive behavior across devices.",
-    ],
-  },
-  {
-    id: "skills",
-    label: "Skills",
-    title: "Skills",
-    description:
-      "My core skills include React, TypeScript, Tailwind CSS, component design, and responsive UI implementation.",
-    details: [
-      "I am comfortable building typed React components with predictable state flows.",
-      "I use Tailwind utility composition to keep design systems cohesive.",
-      "I structure code for readability, scalability, and easier future refactoring.",
-    ],
-  },
-] as const;
+import { aboutSections, type AboutSection } from "../data/About";
 
 export function AboutMenu() {
   const contentRailRef = useRef<HTMLDivElement | null>(null);
   const [activeSectionId, setActiveSectionId] = useState<
     (typeof aboutSections)[number]["id"]
-  >(aboutSections[0].id);
-  const [isBouncing, setIsBouncing] = useState(true);
+  >("technologies-tools");
+  const [isBouncing, setIsBouncing] = useState(false);
+  const [hasBounced, setHasBounced] = useState(false);
+  const [arrowStyle, setArrowStyle] = useState<{ top?: string }>({});
+  const menuContainerRef = useRef<HTMLDivElement | null>(null);
+  // State for the new mobile accordion
+  const [openAccordionId, setOpenAccordionId] = useState<string | null>("technologies-tools");
+  // State for accordion pagination
+  const [activePages, setActivePages] = useState<Record<string, number>>({});
+  const [spotlightStyle, setSpotlightStyle] = useState({});
 
   const activeSection =
     aboutSections.find((section) => section.id === activeSectionId) ??
@@ -64,25 +22,32 @@ export function AboutMenu() {
 
   useEffect(() => {
     contentRailRef.current?.scrollTo({ left: 0, behavior: "smooth" });
+
+    // Set arrow position to the active item
+    if (menuContainerRef.current) {
+      // Find the button corresponding to the active section
+      const activeItem = menuContainerRef.current.querySelector<HTMLElement>(`[data-section-id="${activeSectionId}"]`);
+      if (activeItem) {
+        handleMenuClick(activeItem);
+      }
+    }
   }, [activeSectionId]);
 
   useEffect(() => {
-      // Start bouncing after a delay
-    const bounceTimer = window.setTimeout(() => setIsBouncing(true), 5000);
- 
-    const stopBouncing = () => {
-      // Only update state if it's currently true to avoid unnecessary re-renders
-      setIsBouncing((prevIsBouncing) => {
-        if (prevIsBouncing) {
-          clearTimeout(bounceTimer);
-          return false;
-        }
-        return prevIsBouncing;
-      });
+    // Start bouncing after a delay, but only if it hasn't bounced before.
+    const bounceTimer = window.setTimeout(() => {
+      if (!hasBounced) {
+        setIsBouncing(true);
+        // Set hasBounced to true so it doesn't bounce again on re-renders.
+        setHasBounced(true);
+      }
+    }, 1500); // Start after 1.5 seconds
+
+    // Cleanup the timer if the component unmounts.
+    return () => {
+      clearTimeout(bounceTimer);
     };
-    window.addEventListener("scroll", stopBouncing);
-    return () => window.removeEventListener("scroll", stopBouncing);
-  }, []);
+  }, [hasBounced]); // Depend on hasBounced to prevent re-running the timer.
 
   const scrollRailRight = () => {
     const rail = contentRailRef.current;
@@ -105,32 +70,103 @@ export function AboutMenu() {
     }
   };
 
+  const handleMenuClick = (element: HTMLElement) => {
+    if (menuContainerRef.current) {
+      const topPosition = element.offsetTop + element.offsetHeight / 2;
+      setArrowStyle({ top: `${topPosition}px` });
+    }
+  };
+
+  const handleMenuMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (menuContainerRef.current) {
+      const rect = menuContainerRef.current.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      setSpotlightStyle({
+        background: `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.2), transparent 150px)`,
+      });
+    }
+  };
+
   return (
     <div className="flex w-full flex-col items-center justify-center gap-5 lg:flex-row lg:gap-8">
-      <div className="w-full lg:hidden">
-        <ul className="grid w-full grid-cols-2 gap-1 font-mono text-sm sm:grid-cols-4 sm:gap-2 sm:text-xs">
+      {/* --- NEW Mobile Vertical Cards --- */}
+      <div className="w-full self-start lg:hidden">
+        <div className="flex w-full flex-col divide-y divide-gray-200 rounded-lg border border-gray-200 bg-white/50 shadow-sm">
           {aboutSections.map((section) => {
-            const isActive = section.id === activeSectionId;
+            const isOpen = openAccordionId === section.id;
+            const pages = [section.description, ...section.details];
+            const currentPageIndex = activePages[section.id] ?? 0;
+            const currentPageContent = pages[currentPageIndex];
 
             return (
-              <li
-                key={section.id}
-                className="px-2 py-1 text-center transition-all duration-200 hover:bg-white/60"
-              >
+              <div key={section.id}>
                 <button
                   type="button"
-                  onClick={() => setActiveSectionId(section.id)}
-                  className={`cursor-pointer whitespace-nowrap ${isActive ? "font-bold text-gray-900" : "text-gray-600"}`}
+                  onClick={() => {
+                    setOpenAccordionId(isOpen ? null : section.id);
+                    setActivePages((prev) => ({ ...prev, [section.id]: 0 }));
+                  }}
+                  className="flex w-full items-center justify-between p-4 text-left font-mono text-base font-semibold"
                 >
-                  {section.label}
+                  <span>{section.label}</span>
+                  <span
+                    className={`transform text-2xl font-light text-lime-600 transition-transform duration-300 ${isOpen ? "rotate-45" : "rotate-0"}`}
+                  >
+                    +
+                  </span>
                 </button>
-              </li>
+                <div
+                  className={`grid overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+                >
+                  <div className="min-h-0">
+                    <div className="flex h-80 w-full flex-col">
+                      {/* Pagination Controls */}
+                      <div className="flex justify-center gap-3 px-4 pt-4">
+                        {pages.map((_, index) => (
+                          <button
+                            key={index}
+                            type="button"
+                            onClick={() =>
+                              setActivePages((prev) => ({
+                                ...prev,
+                                [section.id]: index,
+                              }))
+                            }
+                            aria-label={`Go to page ${index + 1}`}
+                            className={`h-3 w-3 rounded-full transition-colors ${
+                              currentPageIndex === index
+                                ? "bg-lime-600"
+                                : "bg-lime-200 hover:bg-lime-400"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                      <article className="flex-1 space-y-3 overflow-y-auto p-5">
+                        <h3 className="text-lg font-bold text-gray-800">
+                          {currentPageIndex === 1 ? "Working Environment" : section.title}
+                        </h3>
+                        <p className="overscroll-contain pr-1 text-base text-gray-700">
+                          {currentPageContent.replace(/\n\n/g, "\n")}
+                        </p>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </div>
             );
           })}
-        </ul>
+        </div>
       </div>
 
-      <div className="hidden h-[22rem] w-56 items-center justify-center text-center text-lg tracking-wide backdrop-blur-md lg:h-[26rem] lg:border-r-2 lg:border-black lg:pr-4 lg:flex">
+      {/* --- Existing Desktop Menu (unchanged) --- */}
+      <div
+        ref={menuContainerRef}
+        onMouseMove={handleMenuMouseMove}
+        onMouseLeave={() => setSpotlightStyle({})}
+        className="relative hidden h-[22rem] w-56 items-center justify-center overflow-hidden text-center text-lg tracking-wide backdrop-blur-md lg:h-[26rem] lg:border-r-2 lg:border-black lg:pr-4 lg:flex"
+      >
+        <div className="pointer-events-none absolute inset-0" style={spotlightStyle} />
         <ul className="flex w-full flex-col gap-y-8 font-mono">
           {aboutSections.map((section) => {
             const isActive = section.id === activeSectionId;
@@ -142,7 +178,11 @@ export function AboutMenu() {
               >
                 <button
                   type="button"
-                  onClick={() => setActiveSectionId(section.id)}
+                  data-section-id={section.id}
+                  onClick={(e) => {
+                    setActiveSectionId(section.id);
+                    handleMenuClick(e.currentTarget);
+                  }}
                   className={`cursor-pointer ${isActive ? "font-bold text-gray-900" : "text-gray-800"}`}
                 >
                   {section.label}
@@ -151,53 +191,68 @@ export function AboutMenu() {
             );
           })}
         </ul>
+        {/* Indicator Arrow */}
+        <div
+          className="pointer-events-none absolute left-full -translate-y-1/2 transform transition-all duration-300"
+          style={arrowStyle}
+        >
+          {activeSectionId && (
+            <div
+              className="arrow-right-lime animate-fade-in-scale"
+              style={{ borderLeftColor: "black" }}
+            ></div>
+          )}
+        </div>
       </div>
 
+      {/* --- Content Area (hidden on mobile) --- */}
       <div
         id="content"
-        className="relative h-[22rem] w-full max-w-full lg:h-[26rem] lg:w-[52rem]"
+        className="group relative h-[22rem] w-full max-w-full lg:h-[26rem] lg:w-[52rem]"
       >
-        <button
-          type="button"
-          onClick={scrollRailLeft}
-          aria-label="Scroll left for more information"
-          className={`absolute top-1/2 left-2 z-20 -translate-y-1/2 rounded-full border border-black bg-black px-3 py-2 text-xl font-semibold text-white shadow-md transition hover:bg-slate-900 ${isBouncing ? "animate-bounce-x-left" : ""}`}
-        >
-          ←
-        </button>
-        <button
-          type="button"
-          onClick={scrollRailRight}
-          aria-label="Scroll right for more information"
-          className={`absolute top-1/2 right-2 z-20 -translate-y-1/2 rounded-full border border-black bg-black px-3 py-2 text-xl font-semibold text-white shadow-md transition hover:bg-slate-900 ${isBouncing ? "animate-bounce-x-right" : ""}`}
-        >
-          →
-        </button>
-
+        {/* This content rail is only for desktop */}
         <div
           ref={contentRailRef}
           onWheel={handleLargeWheelScroll}
-          onMouseEnter={() => setIsBouncing(false)}
-          onTouchStart={() => setIsBouncing(false)}
-          className="h-full w-full overflow-x-auto overflow-y-hidden rounded-lg border-4 border-white/50 p-4 shadow-xl lg:border-0 lg:shadow-none"
+          className="hidden h-full w-full flex-col lg:flex lg:rounded-lg lg:border lg:border-white lg:bg-neutral-100 lg:p-4 lg:shadow-xl"
         >
-          <div className="flex h-full w-full snap-x snap-mandatory gap-0">
-            {[activeSection.description, ...activeSection.details].map(
-              (text, index) => (
-                <article
-                  key={`${activeSection.id}-${index}`}
-                  className="grid h-full w-full shrink-0 snap-start grid-cols-1 content-start rounded-lg p-5"
-                >
+          {(() => {
+            const pages = [activeSection.description, ...activeSection.details];
+            const currentPageIndex = activePages[activeSection.id] ?? 0;
+            const currentPageContent = pages[currentPageIndex];
+
+            return (
+              <>
+                <article className="flex-1 grid-cols-1 content-start rounded-lg p-5">
                   <h3 className="text-2xl font-bold text-gray-800">
-                    {activeSection.title}
+                    {currentPageIndex === 1 ? "Working Environment" : activeSection.title}
                   </h3>
-                  <p className="mt-4 overflow-y-auto overscroll-contain pr-1 text-gray-600">
-                    {text}
+                  <p className="mt-4 h-[calc(100%-2rem)] overflow-y-auto overscroll-contain pr-1 text-gray-600">
+                    {currentPageContent}
                   </p>
                 </article>
-              ),
-            )}
-          </div>
+                {/* Pagination Controls */}
+                <div className="flex justify-center gap-3 p-4">
+                  {pages.map((_, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() =>
+                        setActivePages((prev) => ({
+                          ...prev,
+                          [activeSection.id]: index,
+                        }))
+                      }
+                      aria-label={`Go to page ${index + 1}`}
+                      className={`h-3 w-3 rounded-full transition-colors ${
+                        currentPageIndex === index ? "bg-gray-800" : "bg-gray-300 hover:bg-gray-400"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </>
+            );
+          })()}
         </div>
       </div>
     </div>

@@ -1,8 +1,16 @@
+import { useState, useEffect } from "react";
 import linkedInProfile from "../img/linkedid.webp";
 import { PageArrow } from "./PageArrow";
 import { scrollToNextSection } from "../utils/sectionScroll";
 
 export function Homepage() {
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 1024);
+
+  useEffect(() => {
+    const handleResize = () => setIsLargeScreen(window.innerWidth >= 1024);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   const handleScrollToNextSection = () => {
     scrollToNextSection({
       currentSectionId: "Homepage",
@@ -28,7 +36,7 @@ export function Homepage() {
             </h1>
 
             <h2 className="mt-4 max-w-2xl px-2 font-mono text-sm text-black sm:text-base md:text-xl lg:text-neutral-50">
-              I.T. Professional | Software Engineer | Go-Getter
+              I.T. Professional | Software Engineer
             </h2>
           </div>
         </div>
@@ -40,6 +48,7 @@ export function Homepage() {
             onArrowClick={handleScrollToNextSection}
             ariaLabel="Scroll to next section"
             keepFullWidthLine={true}
+            lineClassName={isLargeScreen ? "h-0.5 bg-slate-500" : "bg-slate-500"}
             neverHidden={true}
           />
         </div>
