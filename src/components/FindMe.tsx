@@ -14,7 +14,7 @@ export function FindMe() {
     <section id="find-me">
       <div
         id="container"
-        className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-slate-950 px-6 py-8 shadow-xl md:px-10 md:py-10"
+        className="relative flex w-full flex-col items-center justify-center overflow-hidden bg-slate-950 px-6 py-16 shadow-xl md:px-10 md:py-10 lg:min-h-screen"
       >
         {/* Transversal Line */}
         <div className="absolute inset-0 flex items-center justify-center">

@@ -22,11 +22,10 @@ export function About() {
   return (
     <section id="About">
       <div
-        id="container"
-        className="relative flex h-screen w-full flex-col items-center bg-neutral-100 shadow-xl lg:min-h-[44rem] lg:justify-center lg:overflow-hidden"
+        id="container" // On smaller screens, allow the container to grow with content
+        className="relative flex w-full flex-col items-center bg-gradient-to-b from-neutral-50 to-neutral-200 shadow-xl lg:h-screen lg:min-h-[44rem] lg:justify-center lg:overflow-hidden"
       >
-      <div
-      className="mb-2 lg:mb-0">
+        <div className="hidden lg:block">
         <PageArrow
           direction="up"
           placement="top"
@@ -38,7 +37,7 @@ export function About() {
           bounce={true}
         />
       </div>
-        <div className="flex w-full max-w-6xl flex-1 flex-col items-center gap-6 overflow-y-auto px-6 pb-16 pt-2 md:px-10 md:py-10 lg:my-auto lg:flex-none lg:overflow-y-visible lg:pb-8 lg:-translate-y-8 lg:rounded-2xl lg:p-6">
+        <div className="flex w-full max-w-6xl flex-col items-center gap-6 px-6 pb-0 pt-12 md:px-10 md:pt-10 lg:flex-1 lg:my-auto lg:flex-none lg:overflow-y-visible lg:pb-0 lg:pt-2 lg:-translate-y-8 lg:rounded-2xl lg:p-6">
           <div className="w-full text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               About Me
@@ -49,17 +48,17 @@ export function About() {
           </div>
           <AboutMenu />
         </div>
-
-        <PageArrow
-          direction="down"
-          placement="bottom"
-          onArrowClick={handleScrollToNextSection}
-          ariaLabel="Scroll to next section"
-          keepFullWidthLine={true}
-          lineClassName={"bg-black"}
-          neverHidden={true}
-        />
-
+        <div className="hidden w-full lg:block">
+          <PageArrow
+            direction="down"
+            placement="bottom"
+            onArrowClick={handleScrollToNextSection}
+            ariaLabel="Scroll to next section"
+            keepFullWidthLine={true}
+            lineClassName={"bg-black"}
+            neverHidden={true}
+          />
+        </div>
       </div>
     </section>
   );

@@ -60,10 +60,9 @@ export function TechnologiesTools() {
     <section id="technologies-tools">
       <div
         id="container"
-        className="relative flex min-h-screen w-full flex-col items-center bg-neutral-100 px-6 py-8 md:px-10 md:py-10 lg:justify-center"
+        className="relative flex w-full flex-col items-center gap-6 bg-white px-6 pt-0 pb-16 md:px-10 lg:min-h-screen"
       >
-        <div className="mb-2">
-          <PageArrow
+        <div className="hidden lg:block">          <PageArrow
           direction="up"
           placement="top"
           onArrowClick={handleScrollToPreviousSection}
@@ -72,7 +71,7 @@ export function TechnologiesTools() {
           lineClassName="none"
           />
         </div>
-        <div className="text-center lg:w-full">
+        <div className="w-full text-center pt-12 md:pt-10 lg:pt-2">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             My Tech Toolkit
           </h2>
@@ -82,7 +81,7 @@ export function TechnologiesTools() {
         </div>
 
         {/* --- Mobile & Medium View --- */}
-        <div className="w-full max-w-4xl flex-1 py-8 lg:hidden">
+        <div className="w-full max-w-4xl lg:hidden">
           <TechToolsView content={techData} openSubsections={openSubsections} setOpenSubsections={setOpenSubsections} />
         </div>
 
@@ -90,7 +89,7 @@ export function TechnologiesTools() {
         <div className="hidden w-full max-w-6xl flex-1 flex-col items-center justify-center gap-6 lg:flex lg:flex-none">
           <TechnologiesToolsMenu onSkillClick={setActiveSkill} />
           {/* Details Display */}
-          <div className="z-10 mx-auto mt-8 w-full max-w-4xl rounded-lg bg-transparent p-4">
+          <div className="z-10 mx-auto mt-8 w-full max-w-4xl rounded-lg bg-white p-4">
             {activeSkill ? (
               <div className="flex animate-fade-in-scale flex-col items-center gap-6 sm:flex-row sm:items-start">
                 <img
@@ -116,15 +115,17 @@ export function TechnologiesTools() {
           </div>
         </div>
 
-        <PageArrow
-          direction="down"
-          placement="bottom"
-          onArrowClick={handleScrollToNextSection}
-          ariaLabel="Scroll to next section"
-          keepFullWidthLine={true}
-          lineClassName="bg-slate-500"
-          neverHidden={true}
-        />
+        <div className="hidden w-full lg:block">
+          <PageArrow
+            direction="down"
+            placement="bottom"
+            onArrowClick={handleScrollToNextSection}
+            ariaLabel="Scroll to next section"
+            keepFullWidthLine={true}
+            lineClassName="bg-slate-500"
+            neverHidden={true}
+          />
+        </div>
       </div>
     </section>
   );
@@ -169,19 +170,35 @@ type TechnologiesToolsMenuProps = {
 function TechnologiesToolsMenu({ onSkillClick }: TechnologiesToolsMenuProps) {
   const renderSkillList = (items: DesktopSkill[]) => {
     return (
-      <ul className="mt-4 flex flex-wrap justify-center gap-2">
-        {items.map((item) => (
-          <li key={item.name}>
-            <button
-              type="button"
-              className="rounded-full bg-slate-200 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-300 hover:text-slate-900 focus:outline-none focus:ring-2 focus:ring-lime-500 focus:ring-offset-2"
-              onClick={() => onSkillClick(item)}
-              aria-label={`View details for ${item.name}`}
-            >
-              {item.name}
-            </button>
-          </li>
-        ))}
+      <ul className="mt-4 flex flex-wrap justify-center gap-3">
+        {items.map((item) => {
+          const isWork = item.expertise === "Work Experience";
+          return (
+            <li key={item.name}>
+              <button
+                type="button"
+                className="flex items-center gap-2 rounded-full bg-white p-2 pr-3 text-sm shadow-sm ring-1 ring-gray-200 transition-all duration-200 hover:shadow-md hover:ring-gray-300 focus:outline-none focus:ring-2 focus:ring-lime-500"
+                onClick={() => onSkillClick(item)}
+                aria-label={`View details for ${item.name}`}
+              >
+                {item.logo && <img src={item.logo} alt={`${item.name} logo`} className="size-5" />}
+                <span className="font-mono font-medium text-gray-800">
+                  <span className="text-lime-600">#</span>
+                  {item.name}
+                </span>
+                <span
+                  className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
+                    isWork
+                      ? "bg-sky-100 text-sky-800"
+                      : "bg-purple-100 text-purple-800"
+                  }`}
+                >
+                  {item.expertise}
+                </span>
+              </button>
+            </li>
+          );
+        })}
       </ul>
     );
   };
@@ -190,12 +207,12 @@ function TechnologiesToolsMenu({ onSkillClick }: TechnologiesToolsMenuProps) {
     <div className="relative w-full">
       <section className="mx-auto w-full max-w-5xl">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          <article className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-lg transition-all duration-300 grayscale hover:grayscale-0">
+          <article className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-lg transition-all duration-300">
             <h3 className="text-xl font-semibold text-slate-900">Technologies</h3>
             {renderSkillList(technologies)}
           </article>
 
-          <article className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-lg transition-all duration-300 grayscale hover:grayscale-0">
+          <article className="rounded-2xl border border-slate-200 bg-white p-4 text-center shadow-lg transition-all duration-300">
             <h3 className="text-xl font-semibold text-slate-900">Tools</h3>
             {renderSkillList(tools)}
           </article>
@@ -207,7 +224,7 @@ function TechnologiesToolsMenu({ onSkillClick }: TechnologiesToolsMenuProps) {
 
 function CollapsibleSection({ title, isOpen, onToggle, children }: { title: string; isOpen: boolean; onToggle: () => void; children: React.ReactNode; }) {
   return (
-    <div className="rounded-md border border-gray-200/80 bg-black/5 p-3">
+    <div className="rounded-md border border-gray-200/80 bg-white/50 p-3">
       <button onClick={onToggle} className="flex w-full items-center justify-between font-mono text-sm font-semibold">
         {title}
         <span className={`transform transition-transform ${isOpen ? "rotate-180" : ""}`}>▼</span>

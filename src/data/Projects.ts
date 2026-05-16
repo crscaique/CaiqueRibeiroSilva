@@ -8,27 +8,49 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: "Personal Portfolio Website",
+    name: "Scholar Spark",
     description:
-      "A responsive personal portfolio built with React, TypeScript, and Tailwind CSS to showcase my skills and projects. Features a modern, single-page layout with smooth scrolling and interactive sections.",
+      "Contributed to an LLM-powered web application for academic research. My work focused on building a scalable and user-friendly front-end interface and developing a comprehensive Design System with reusable components.",
     screenshots: [
-      "https://placehold.co/1280x720/1e293b/ffffff?text=Portfolio+Homepage",
-      "https://placehold.co/1280x720/1e293b/ffffff?text=Projects+Section",
-      "https://placehold.co/1280x720/1e293b/ffffff?text=Mobile+View",
+      "https://placehold.co/1280x720/1e293b/ffffff?text=Scholar+Spark+UI",
     ],
-    url: "https://github.com/caiqueribeiros/cai-responsive",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+    url: "https://www.scholarspark.ai/",
+    technologies: ["Next.js", "React", "TypeScript", "Storybook", "Tamagui"],
   },
   {
-    name: "Project Management Tool",
+    name: "Memories Pilot",
     description:
-      "A conceptual project management application designed to help teams organize tasks, track progress, and collaborate effectively. Features a drag-and-drop Kanban board and real-time updates.",
+      "A clean and intuitive application designed to help users capture, organize, and revisit their most cherished memories. The focus is on a seamless and enjoyable user experience.",
     screenshots: [
-      "https://placehold.co/1280x720/1e293b/ffffff?text=Kanban+Board",
-      "https://placehold.co/1280x720/1e293b/ffffff?text=Task+Details",
-      "https://placehold.co/1280x720/1e293b/ffffff?text=Dashboard",
+      "https://placehold.co/1280x720/1e293b/ffffff?text=Memories+Pilot+App",
     ],
-    url: "https://github.com/caiqueribeiros/example-project-tool",
-    technologies: ["React", "Node.js", "Socket.IO", "PostgreSQL"],
+    url: "https://memoriespilot.lovable.app/",
+    technologies: ["React", "TypeScript", "Web App"],
+  },
+  {
+    name: "Cloud Platforms Evaluation Paper",
+    description:
+      "An in-depth academic research paper evaluating and comparing the features, performance, and cost-effectiveness of major cloud platforms like AWS, Azure, and Google Cloud.",
+    screenshots: [
+      "https://placehold.co/1280x720/1e293b/ffffff?text=Cloud+Evaluation+Paper",
+    ],
+    url: "https://github.com/crscaique/Cloud-Platforms---Evaluation-Paper",
+    technologies: ["Academic Research", "AWS", "Azure", "GCP"],
+  },
+  {
+    name: "User Experience (UX) Analysis",
+    description:
+      "A project focused on applying user experience (UX) principles. It involved user research, analysis, and the creation of design mockups to enhance application usability and accessibility.",
+    screenshots: ["https://placehold.co/1280x720/1e293b/ffffff?text=UX+Analysis"],
+    url: "https://github.com/crscaique/user-experience",
+    technologies: ["Figma", "User Research", "Prototyping"],
+  },
+  {
+    name: "Tamaki-Makaurau Project",
+    description:
+      "A web project centered around Tamaki-Makaurau (Auckland), designed to explore local data or provide valuable information about the region through an interactive interface.",
+    screenshots: ["https://placehold.co/1280x720/1e293b/ffffff?text=Auckland+Project"],
+    url: "https://github.com/crscaique/Tamaki-Makaurau",
+    technologies: ["React", "TypeScript", "Web Development"],
   },
 ];

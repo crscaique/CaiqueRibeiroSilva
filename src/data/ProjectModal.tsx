@@ -5,9 +5,11 @@ import { ChevronLeft, ChevronRight, X } from "lucide-react";
 type ProjectModalProps = {
   project: Project;
   onClose: () => void;
+  onNext: () => void;
+  onPrevious: () => void;
 };
 
-export function ProjectModal({ project, onClose }: ProjectModalProps) {
+export function ProjectModal({ project, onClose, onNext, onPrevious }: ProjectModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const goToPrevious = () => {
@@ -28,7 +30,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
       onClick={onClose}
     >
       <div
-        className="relative mx-4 w-full max-w-4xl animate-fade-in-scale rounded-lg bg-white p-6 shadow-2xl"
+        className="relative mx-4 w-full max-w-lg animate-fade-in-scale rounded-lg bg-white p-4 shadow-2xl md:max-w-2xl lg:max-w-4xl lg:p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -39,7 +41,23 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           <X size={24} />
         </button>
 
-        <div className="relative h-96 w-full">
+
+        <button
+          onClick={onPrevious}
+          className="absolute top-1/2 -left-4 z-20 -translate-y-1/2 rounded-full bg-white/80 p-1 text-gray-700 shadow-md transition hover:bg-white hover:scale-110 md:-left-5"
+          aria-label="Previous project"
+        >
+          <ChevronLeft size={28} />
+        </button>
+        <button
+          onClick={onNext}
+          className="absolute top-1/2 -right-4 z-20 -translate-y-1/2 rounded-full bg-white/80 p-1 text-gray-700 shadow-md transition hover:bg-white hover:scale-110 md:-right-5"
+          aria-label="Next project"
+        >
+          <ChevronRight size={28} />
+        </button>
+
+        <div className="relative h-48 w-full md:h-64 lg:h-96">
           <img
             src={project.screenshots[currentImageIndex]}
             alt={`Screenshot ${currentImageIndex + 1} of ${project.name}`}

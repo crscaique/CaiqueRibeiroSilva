@@ -3,12 +3,15 @@ import typescriptLogo from "../img/logos/typescript.svg";
 import javascriptLogo from "../img/logos/javascript.svg";
 import tailwindLogo from "../img/logos/tailwind.svg";
 import gitLogo from "../img/logos/git.svg";
+import csharpLogo from "../img/logos/csharp.svg";
+import figmaLogo from "../img/logos/figma.svg";
+// Note: Visual Studio logo is not available in the project, so it will be omitted.
 
 export interface Skill {
   name: string;
   logo: string;
   description: string;
-  expertise: string;
+  expertise: "Work Experience" | "Academic Experience";
 }
 
 export const technologies: Skill[] = [
@@ -16,33 +19,51 @@ export const technologies: Skill[] = [
     name: "React",
     logo: reactLogo,
     description: "A JavaScript library for building user interfaces, allowing for the creation of reusable UI components.",
-    expertise: "Advanced",
-  },
-  {
-    name: "TypeScript",
-    logo: typescriptLogo,
-    description: "A typed superset of JavaScript that compiles to plain JavaScript, improving code quality and maintainability.",
-    expertise: "Intermediate",
+    expertise: "Work Experience",
   },
   {
     name: "JavaScript",
     logo: javascriptLogo,
     description: "The core language of the web, used to create dynamic and interactive user experiences.",
-    expertise: "Advanced",
+    expertise: "Work Experience",
   },
-];
-
-export const tools: Skill[] = [
+  {
+    name: "TypeScript",
+    logo: typescriptLogo,
+    description: "A typed superset of JavaScript that compiles to plain JavaScript, improving code quality and maintainability.",
+    expertise: "Work Experience",
+  },
   {
     name: "Tailwind CSS",
     logo: tailwindLogo,
     description: "A utility-first CSS framework for rapidly building custom user interfaces without leaving your HTML.",
-    expertise: "Advanced",
+    expertise: "Work Experience",
   },
   {
     name: "Git",
     logo: gitLogo,
     description: "A distributed version control system for tracking changes in source code during software development.",
-    expertise: "Intermediate",
+    expertise: "Work Experience",
+  },
+  {
+    name: "C#",
+    logo: csharpLogo,
+    description: "A general-purpose, high-level, object-oriented programming language from Microsoft.",
+    expertise: "Academic Experience",
+  },
+];
+
+export const tools: Skill[] = [
+  {
+    name: "Visual Studio",
+    logo: "", // Logo not available
+    description: "An integrated development environment (IDE) from Microsoft used for developing computer programs.",
+    expertise: "Academic Experience",
+  },
+  {
+    name: "Figma",
+    logo: figmaLogo,
+    description: "A collaborative web-based design tool used for creating user interfaces, prototypes, and design systems.",
+    expertise: "Academic Experience",
   },
 ];

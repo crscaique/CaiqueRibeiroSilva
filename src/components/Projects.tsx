@@ -4,11 +4,25 @@ import {
   scrollToNextSection,
   scrollToPreviousSection,
 } from "../utils/sectionScroll";
-import { projects, type Project } from "../data/Projects";
+import { projects } from "../data/Projects";
 import { ProjectModal } from "../data/ProjectModal";
 
 export function Projects(){
-    const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+    const [selectedProjectIndex, setSelectedProjectIndex] = useState<number | null>(null);
+
+    const handleNextProject = () => {
+      if (selectedProjectIndex !== null) {
+        setSelectedProjectIndex((prevIndex) => (prevIndex! + 1) % projects.length);
+      }
+    };
+  
+    const handlePreviousProject = () => {
+      if (selectedProjectIndex !== null) {
+        setSelectedProjectIndex((prevIndex) => (prevIndex! - 1 + projects.length) % projects.length);
+      }
+    };
+
+    const selectedProject = selectedProjectIndex !== null ? projects[selectedProjectIndex] : null;
 
     const handleScrollToPreviousSection = () => {
     scrollToPreviousSection({
@@ -25,10 +39,8 @@ export function Projects(){
 <section id="projects">
       <div
         id="container"
-        className="relative flex min-h-screen w-full flex-col items-center overflow-hidden bg-neutral-100 lg:bg-slate-950 shadow-xl px-6 py-8 md:px-10 md:py-10"
-      >
-      <div
-      className="mb-2">
+        className="relative flex w-full flex-col items-center overflow-hidden bg-neutral-100 px-6 py-16 shadow-xl md:px-10 md:py-10 lg:min-h-screen lg:bg-slate-950"
+      ><div className="hidden lg:block">
         <PageArrow
           direction="up"
           placement="top"
@@ -39,7 +51,7 @@ export function Projects(){
           neverHidden={false}
         />
       </div>
-        <div className="flex w-full max-w-6xl flex-1 flex-col items-center gap-6 lg:my-auto lg:flex-none lg:-translate-y-8 lg:rounded-2xl lg:px-6 lg:pt-6">
+        <div className="flex w-full max-w-6xl flex-1 flex-col items-center gap-6 lg:my-auto lg:flex-none lg:pt-6 lg:-translate-y-8 lg:rounded-2xl lg:px-6">
           <div className="mb-8 text-center lg:w-full">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 lg:text-white sm:text-4xl">
               Projects
@@ -50,11 +62,11 @@ export function Projects(){
           </div>
 
           <div className="grid w-full grid-cols-2 gap-4 md:gap-8 lg:grid-cols-3">
-            {projects.map((project) => (
+            {projects.map((project, index) => (
               <div
                 key={project.name}
                 className="group relative flex cursor-pointer flex-col overflow-hidden rounded-lg bg-white shadow-lg transition-transform duration-300 hover:scale-105"
-                onClick={() => setSelectedProject(project)}
+                onClick={() => setSelectedProjectIndex(index)}
               >
                 <img
                   src={project.screenshots[0] || "https://placehold.co/600x400/1e293b/ffffff?text=Project"}
@@ -77,18 +89,25 @@ export function Projects(){
             ))}
           </div>
         </div>
-        {selectedProject && <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />}
-
-        <PageArrow
-          direction="down"
-          placement="bottom"
-          onArrowClick={handleScrollToNextSection}
-          ariaLabel="Scroll to next section"
-          lineClassName="bg-slate-500"
-          keepFullWidthLine={true}
-          neverHidden={true}
-        />
-
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProjectIndex(null)}
+            onNext={handleNextProject}
+            onPrevious={handlePreviousProject}
+          />
+        )}
+        <div className="hidden w-full lg:block">
+          <PageArrow
+            direction="down"
+            placement="bottom"
+            onArrowClick={handleScrollToNextSection}
+            ariaLabel="Scroll to next section"
+            lineClassName="bg-slate-500"
+            keepFullWidthLine={true}
+            neverHidden={true}
+          />
+        </div>
       </div>
     </section>
     )
