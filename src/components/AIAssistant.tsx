@@ -180,7 +180,7 @@ export function AIAssistant() {
       {/* Button */}
       <div className="group flex items-center">
         {!isOpen && isIntroActive && (
-          <div className="absolute right-full mr-4 whitespace-nowrap rounded-md bg-slate-800 px-3 py-2 text-sm font-semibold text-white shadow-lg">
+          <div className="absolute right-full mr-4 whitespace-nowrap rounded-md bg-slate-800 px-3 py-2 text-sm font-semibold text-white shadow-lg animate-bounce">
             Heey, let's chat!
             <div className="absolute top-1/2 right-[-4px] h-3 w-3 -translate-y-1/2 rotate-45 bg-slate-800"></div>
           </div>

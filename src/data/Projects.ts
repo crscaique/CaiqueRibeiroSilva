@@ -1,3 +1,8 @@
+import scholarSparkImg from "../img/ScholarSpark-Portfolio.png";
+import memoriesPilotImg from "../img/Memoriespilot-Portfolio.png";
+import cloudApplicationsImg from "../img/CloudApplications-Portfolio.png";
+import uxAnalysisImg from "../img/UserExperience-Portfolio.png";
+
 export type Project = {
   name: string;
   description: string;
@@ -12,7 +17,7 @@ export const projects: Project[] = [
     description:
       "Contributed to an LLM-powered web application for academic research. My work focused on building a scalable and user-friendly front-end interface and developing a comprehensive Design System with reusable components.",
     screenshots: [
-      "https://placehold.co/1280x720/1e293b/ffffff?text=Scholar+Spark+UI",
+      scholarSparkImg,
     ],
     url: "https://www.scholarspark.ai/",
     technologies: ["Next.js", "React", "TypeScript", "Storybook", "Tamagui"],
@@ -22,7 +27,7 @@ export const projects: Project[] = [
     description:
       "A clean and intuitive application designed to help users capture, organize, and revisit their most cherished memories. The focus is on a seamless and enjoyable user experience.",
     screenshots: [
-      "https://placehold.co/1280x720/1e293b/ffffff?text=Memories+Pilot+App",
+      memoriesPilotImg,
     ],
     url: "https://memoriespilot.lovable.app/",
     technologies: ["React", "TypeScript", "Web App"],
@@ -32,7 +37,7 @@ export const projects: Project[] = [
     description:
       "An in-depth academic research paper evaluating and comparing the features, performance, and cost-effectiveness of major cloud platforms like AWS, Azure, and Google Cloud.",
     screenshots: [
-      "https://placehold.co/1280x720/1e293b/ffffff?text=Cloud+Evaluation+Paper",
+      cloudApplicationsImg,
     ],
     url: "https://github.com/crscaique/Cloud-Platforms---Evaluation-Paper",
     technologies: ["Academic Research", "AWS", "Azure", "GCP"],
@@ -41,7 +46,7 @@ export const projects: Project[] = [
     name: "User Experience (UX) Analysis",
     description:
       "A project focused on applying user experience (UX) principles. It involved user research, analysis, and the creation of design mockups to enhance application usability and accessibility.",
-    screenshots: ["https://placehold.co/1280x720/1e293b/ffffff?text=UX+Analysis"],
+    screenshots: [uxAnalysisImg],
     url: "https://github.com/crscaique/user-experience",
     technologies: ["Figma", "User Research", "Prototyping"],
   },

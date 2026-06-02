@@ -29,7 +29,7 @@ export function Homepage() {
             <img
               src={linkedInProfile}
               alt="Caique R. Silva profile picture"
-              className="mb-5 size-40 rounded-full object-cover ring-4 ring-lime-500 grayscale transition-all duration-500 hover:grayscale-0 lg:size-50"
+              className="mb-5 size-40 rounded-full object-cover ring-4 ring-slate-500 transition-all duration-500 md:grayscale hover:grayscale-0 lg:size-50"
             />
             <h1 className="px-2 text-3xl leading-tight font-bold text-black sm:text-4xl md:text-5xl lg:text-neutral-50">
               Caique R. Silva
